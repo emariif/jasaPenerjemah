@@ -1,0 +1,50 @@
+.payment.card{
+    margin-top: 30px;
+}
+
+.payment.card ul li{
+    padding: 15px;
+}
+
+.sub {
+    font-weight: 600;
+}
+
+.total {
+    font-weight: 700;
+}
+
+.job p {
+    color: #6D6E72;
+    font-size: 13px;
+}
+
+.job-detail.row {
+    margin-bottom: -0.3rem !important;
+}
+
+.job ul {
+    margin-top: -1rem !important;
+}
+
+.job ul li {
+    border-color: #F6F6F6;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.job.card {
+    margin-top: 30px;
+    width: 18rem; 
+    border: 2px solid #F6F6F6;
+}
+
+.card-body {
+    background-color: #FAFAFA;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.hide {
+  display: none;
+}
