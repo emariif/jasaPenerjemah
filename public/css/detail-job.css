@@ -1,0 +1,188 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  color: #333;
+}
+
+h1,h2 {
+  font-family: "Quicksand", sans-serif;
+  /* margin-bottom: 24px; */
+}
+
+p {
+  line-height: 180%;
+}
+
+#jobDetails h1 {
+  color: #F7F7F7;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.detail-job p {
+    color: #62646A;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.detail-job h2{
+    color: #0E1724;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.detail-job h4{
+    color: #0E1724;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+a:hover {
+  color: rgb(196, 196, 196);
+}
+
+.navbar ul li {
+  margin-left: 30px;
+}
+
+.navbar ul li a {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  /* font-weight: 700; */
+}
+
+.job h6 {
+  font-size: 14px;
+}
+
+.job h5 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+footer {
+  margin-top: 10rem;
+  background-color: #f8f9fa;
+  padding-top: 30px;
+  padding-bottom: 3rem;
+}
+
+small {
+  font-weight: 600;
+}
+
+.image--avatar {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.item {
+  padding-left: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.detail-job a {
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+#jobDetails {
+  background-color: #F0F0F0;
+}
+
+#jobDetails ul{
+  border: none;
+}
+
+#jobDetails ul.nav-tabs li a {
+  border: none;
+  background-color: transparent;
+  border-bottom: transparent;
+  font-size: 14px;
+  color: #62646a;
+}
+
+#jobDetails ul.nav-tabs li a.active {
+  color: #f7f7f7; 
+  border: none;
+  border-bottom: 3px solid #007FED;
+  font-weight: 600;
+}
+
+#jobDetails ul.nav-tabs li a.active:hover {
+  color: #f7f7f7; 
+  border: none;
+  border-bottom: 3px solid #007FED;
+  font-weight: 600;
+}
+
+#jobDetails ul.nav-tabs li a:hover{
+  color: #62646a;
+  border: none;
+  border-bottom: 3px solid #DEDEDE;
+}
+
+.nav {
+  border: none;
+}
+
+#proposal h5{
+  font-size: 16px;
+}
+
+#proposal h6{
+  font-size: 14px;
+}
+
+#proposal p {
+  font-size: 14px;
+  color: #62646A;
+}
+
+.header {
+  background-color: #0E1724 !important;
+}
+
+.modal-header {
+  background: #FAFAFA;
+  color: #0E1724;
+}
+
+.input-text {
+  background: #FCFCFC;
+  font-size: 14px;
+}
+
+.input-text::placeholder {
+  color: #AEAEAE;
+}
+
+.input-text:focus {
+  box-shadow: none;
+  background: #FCFCFC;
+}
+
+.modal-title h3 {
+  font-size: 22px;
+  color: #5E5E5E;
+}
+
+.send {
+  color: #f7f7f7;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 0;
+}
+
+#jobDetails ul li button {
+  box-shadow: none;
+}

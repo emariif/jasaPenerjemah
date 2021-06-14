@@ -1,0 +1,65 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  color: #333;
+}
+
+h1 {
+  font-family: "Quicksand", sans-serif;
+}
+
+p {
+  line-height: 170%;
+}
+
+a:hover {
+  color: rgb(196, 196, 196);
+}
+
+.navbar ul li {
+  margin-left: 30px;
+}
+
+.navbar ul li a {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  /* font-weight: 700; */
+}
+
+.job h6 {
+  font-size: 14px;
+}
+
+.job h5 {
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 10rem;
+  background-color: #f8f9fa;
+  padding-top: 30px;
+  padding-bottom: 3rem;
+}
+
+small {
+  font-weight: 600;
+}
+
+.image--avatar {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.item {
+  padding-left: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
