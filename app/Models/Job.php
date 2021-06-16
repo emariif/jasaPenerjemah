@@ -35,4 +35,10 @@ class Job extends Model
         // return $this->belongsTo(Kategori_Bahasa::class,'id');
         return $this->hasOne('App\Models\Detailjob');
     }
+
+    public function Proposal(){
+    	// return $this->hasOne(Bahasa::class,'id');
+        // return $this->belongsTo(Kategori_Bahasa::class,'id');
+        return $this->hasMany('App\Models\Proposal');
+    }
 }

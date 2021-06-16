@@ -6,6 +6,7 @@ use App\Models\Detailjob;
 use App\Models\Kategori_Bahasa;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -123,6 +124,32 @@ class jobsController extends Controller
             'kategori_bahasa_id' => $request-> kategori_bahasa_id,
             ]);
             return redirect('joblist');
+    }
+
+    public function proposal(Request $request){
+        
+        $validated = request([
+            'deskripsi' => 'required',
+            'jobs_id' => 'required',
+            'users_id' => 'required',
+        ]);
+
+        $proposals = [
+            'users_id'=>Auth::user()->id,
+            'jobs_id' =>$request->jobs_id,
+            'deskripsi' => $request-> deskripsi,
+        ];
+
+        $jobs = Job::all()->where('id',$proposals['jobs_id'])->first();
+        $proposals['jobs'] = $jobs->id;
+
+        $proposals = Proposal::create([
+            'users_id'=>Auth::user()->id,
+            'jobs_id' =>$request->jobs_id,
+            'deskripsi' => $request-> deskripsi,
+        ]);
+        // dd($proposals);
+        return redirect('/joblist/{id}');
     }
 
     /**
