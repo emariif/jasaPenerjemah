@@ -1,0 +1,71 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  color: #333;
+}
+
+h1 {
+  font-family: "Quicksand", sans-serif;
+}
+
+p {
+  line-height: 170%;
+}
+
+a:hover {
+  color: rgb(196, 196, 196);
+}
+
+.navbar ul li {
+  margin-left: 30px;
+}
+
+.navbar ul li a {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  /* font-weight: 700; */
+}
+
+footer {
+  margin-top: 10rem;
+  background-color: #f8f9fa;
+  padding-top: 30px;
+  padding-bottom: 3rem;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #091f2f;
+  text-transform: uppercase;
+}
+.accordion-section .panel-default > .panel-heading {
+  border: 0;
+  background: #f4f4f4;
+  padding: 0;
+}
+.accordion-section .panel-default .panel-title a {
+  display: block;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+.accordion-section .panel-default .panel-title a:after {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-size: 3rem;
+  content: "\f106";
+  color: #1f7de2;
+  float: right;
+  margin-top: -12px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+  content: "\f107";
+}
+.accordion-section .panel-default .panel-body {
+  font-size: 1.2rem;
+}
