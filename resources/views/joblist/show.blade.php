@@ -91,7 +91,7 @@
                                 
                                 <div class="card shadow-sm py-2 px-3 mb-3">
                                 <div class="card-body">
-                                    @foreach ($proposals as $proposal)
+                                    @foreach ($proposals->where('jobs_id', $joblist->id) as $proposal)
                                     <ul class="list-group list-group-flush">
                                         
                                             <li class="list-group-item">
