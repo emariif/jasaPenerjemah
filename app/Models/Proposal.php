@@ -16,7 +16,7 @@ class Proposal extends Model
     }
 
     public function job(){
-        return $this->belongsTo('App\Models\Job');
+        return $this->belongsTo('App\Models\Job','jobs','jobs_id');
     }
 
 }

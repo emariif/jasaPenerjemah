@@ -23,6 +23,7 @@ class jobsController extends Controller
         // $jobs = Job::all();
         $jobs = Job::get();
         $users = User::all();
+        // $proposals = Proposal::with(['jobs'])->get();
         return view('joblist.index',compact('jobs','users'));
         
     }
@@ -142,14 +143,20 @@ class jobsController extends Controller
 
         $jobs = Job::all()->where('id',$proposals['jobs_id'])->first();
         $proposals['jobs'] = $jobs->id;
+        $proposals = Proposal::all()->where('users_id', '$user_id');
 
-        $proposals = Proposal::create([
-            'users_id'=>Auth::user()->id,
-            'jobs_id' =>$request->jobs_id,
-            'deskripsi' => $request-> deskripsi,
-        ]);
+        Proposal::create($proposals);
+
+        // $proposals = Proposal::create([
+        //     'users_id'=>Auth::user()->id,
+        //     'jobs_id' =>$request->jobs_id,
+        //     'deskripsi' => $request-> deskripsi,
+        // ]);
+        
         // dd($proposals);
-        return redirect('/joblist/{id}');
+        return redirect()->back();
+        // $proposals = Proposal::get();
+        // return view('joblist')->with('proposals',$proposals);
     }
 
     /**
@@ -158,9 +165,11 @@ class jobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Job $joblist)
+    public function show(Job $joblist, Proposal $proposals)
     {
-        return view('joblist.show',compact('joblist') );
+        $jobs_id = Job::find($joblist);
+        $proposals = Proposal::where('jobs_id', $jobs_id)->get();
+        return view('joblist.show',compact('joblist','proposals') );
         // return $joblist;
     }
 

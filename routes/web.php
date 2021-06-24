@@ -27,7 +27,7 @@ Route::get('/joblist/create', 'App\Http\Controllers\jobsController@create');
 Route::post('/joblist/confirm', 'App\Http\Controllers\jobsController@confirm')->name('joblist_confirm');
 Route::get('/joblist/{joblist}', 'App\Http\Controllers\jobsController@show');
 Route::post('/joblist/proposal', 'App\Http\Controllers\jobsController@proposal')->name('joblist_proposal');
-
+    
 // Route::get('/joblist/{joblist}', 'App\Http\Controllers\detailjobController@show');
 
 
