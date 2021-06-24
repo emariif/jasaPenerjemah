@@ -68,11 +68,7 @@
                                             </div>
                                         </li>
                                         @auth
-<<<<<<< HEAD
                                             @if (Auth::user() && Auth::user()->level == 'Translator')
-=======
-                                            @if (Auth::user()->level == 'Translator')
->>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
                                             <li class="list-group-item pt-3 pb-4">
                                             <button class="btn btn-dark px-5 py-2 me-3" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#take-job"
@@ -92,7 +88,6 @@
                     <div class="tab-pane" id="proposal">
                         <div class="row detail-job g-4 mb-5 mt-4">
                             <div class="col-md-10">
-<<<<<<< HEAD
                                 
                                 <div class="card shadow-sm py-2 px-3 mb-3">
                                 <div class="card-body">
@@ -135,45 +130,6 @@
                                     @endforeach
                                 </div>
                             </div>
-=======
-                                @foreach ($proposals as $proposal)
-                                    <div class="card shadow-sm py-2 px-3 mb-3">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                <div class="col-md-5 mb-2">
-                                                    <img class="image--avatar mb-0 me-1" src="images/download.jpg"
-                                                        alt="">
-                                                    <div class="item">
-                                                        <h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }}</h5>
-                                                        <h6 class="type mt-2" style="color: #1b1b1d">
-                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                            <span><i
-                                                                    class="bi bi-star-fill text-warning pe-1"></i></span>
-                                                            4.9
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text mb-4">{{ $proposal->deskripsi }}</p>
-                                            </li>
-                                            <li class="list-group-item pt-3 pb-2">
-                                                <p class="card-text text-end mb-3"
-                                                    style="font-size: 12px;  color: #4D525B; float: left;">
-                                                    {{$proposal->created_at}}
-                                                </p>
-                                                <button class="btn btn-outline-success px-5 py-2" type="button"
-                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;">
-                                                    Select Translator
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                @endforeach
->>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
                                 
 
                             </div>
@@ -182,11 +138,7 @@
                 </div>
 
                 @auth
-<<<<<<< HEAD
                     @if (Auth::user() && Auth::user()->level == 'Translator')
-=======
-                    @if (Auth::user()->level == 'Translator')
->>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
                         <div class="modal" id="take-job">
                     <div class="modal-dialog">
                         <div class="modal-content">
