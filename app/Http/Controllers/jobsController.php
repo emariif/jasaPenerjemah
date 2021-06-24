@@ -161,7 +161,7 @@ class jobsController extends Controller
     public function show(Job $joblist, Proposal $proposals)
     {
         $jobs_id = Job::find($joblist);
-        $proposals = Proposal::where('jobs_id', $jobs_id)->get();
+        $proposals = Proposal::where('jobs_id', $joblist->id)->get();
         return view('joblist.show',compact('joblist','proposals') );
         // return $joblist;
     }

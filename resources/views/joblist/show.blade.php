@@ -88,10 +88,9 @@
                     <div class="tab-pane" id="proposal">
                         <div class="row detail-job g-4 mb-5 mt-4">
                             <div class="col-md-10">
-                                
+                                @foreach ($proposals->where('jobs_id', $joblist->id) as $proposal)
                                 <div class="card shadow-sm py-2 px-3 mb-3">
                                 <div class="card-body">
-                                    @foreach ($proposals->where('jobs_id', $joblist->id) as $proposal)
                                     <ul class="list-group list-group-flush">
                                         
                                             <li class="list-group-item">
@@ -99,7 +98,7 @@
                                                 <img class="image--avatar mb-0 me-1" src="images/download.jpg"
                                                     alt="">
                                                 <div class="item">
-                                                    <h5 class="type" style="color: #1b1b1d">{{ $proposal->nama }} ({{$proposal->jobs_id}})</h5>
+                                                    <h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5>
                                                     <h6 class="type mt-2" style="color: #1b1b1d">
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
@@ -118,17 +117,22 @@
                                                 style="font-size: 12px;  color: #4D525B; float: left;">
                                                 Last updated 3 mins ago
                                             </p>
-                                            <button class="btn btn-outline-success px-5 py-2" type="button"
-                                                style="font-size: 14px; background-color: inherit; color: green; float: right;">
-                                                Select Translator
-                                            </button>
+                                            @auth
+                                                @if (Auth::user() && Auth::user()->level == 'Client')
+                                                <button class="btn btn-outline-success px-5 py-2" type="button"
+                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;">
+                                                    Select Translator
+                                                </button>
+                                                @endif
+                                            @endauth
                                         </li>
                                         
                                             
                                         
                                     </ul>
-                                    @endforeach
                                 </div>
+                                </div>
+                                @endforeach
                             </div>
                                 
 
