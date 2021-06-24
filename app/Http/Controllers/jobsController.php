@@ -23,7 +23,10 @@ class jobsController extends Controller
         // $jobs = Job::all();
         $jobs = Job::get();
         $users = User::all();
+<<<<<<< HEAD
         // $proposals = Proposal::with(['jobs'])->get();
+=======
+>>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
         return view('joblist.index',compact('jobs','users'));
         
     }
@@ -127,6 +130,7 @@ class jobsController extends Controller
             return redirect('joblist');
     }
 
+<<<<<<< HEAD
     public function proposal(Request $request){
         
         $validated = request([
@@ -157,6 +161,48 @@ class jobsController extends Controller
         return redirect()->back();
         // $proposals = Proposal::get();
         // return view('joblist')->with('proposals',$proposals);
+=======
+    // public function proposal(Request $request){
+        
+    //     $validated = request([
+    //         'deskripsi' => 'required',
+    //         'jobs_id' => 'required',
+    //         'users_id' => 'required',
+    //     ]);
+
+    //     $proposals = [
+    //         'users_id'=>Auth::user()->id,
+    //         'jobs_id' =>$request->jobs_id,
+    //         'deskripsi' => $request-> deskripsi,
+    //     ];
+
+    //     $jobs = Job::all()->where('id',$proposals['jobs_id'])->first();
+    //     $proposals['jobs'] = $jobs->id;
+
+    //     $proposals = Proposal::create([
+    //         'users_id'=>Auth::user()->id,
+    //         'jobs_id' =>$request->jobs_id,
+    //         'deskripsi' => $request-> deskripsi,
+    //     ]);
+    //     // dd($proposals);
+    //     return redirect('/joblist/{id}');
+    // }
+
+    public function proposal(Request $request, Proposal $proposal)
+    {
+
+        $Proposal = new Proposal([
+            'users_id'    => auth()->id(),
+            'created_at' => $proposal['created_at'],
+            'jobs_id' => $request['jobs_id'],
+            'deskripsi' => $request['deskripsi']
+        ]);
+
+        $Proposal->save();
+        //alert()->success('You have been logged out.', 'Good bye!');
+        // return response()->json($komentar);
+        return redirect()->back()->with('error', 'Profile updated!');
+>>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
     }
 
     /**
@@ -165,11 +211,18 @@ class jobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function show(Job $joblist, Proposal $proposals)
     {
         $jobs_id = Job::find($joblist);
         $proposals = Proposal::where('jobs_id', $jobs_id)->get();
         return view('joblist.show',compact('joblist','proposals') );
+=======
+    public function show(Job $joblist)
+    {
+        $proposals = Proposal::OrderBy('created_at', 'desc')->paginate(10);
+        return view('joblist.show',compact('joblist', 'proposals') );
+>>>>>>> 2c439344a43ac0d039f63f17c868461d5580f0ba
         // return $joblist;
     }
 
