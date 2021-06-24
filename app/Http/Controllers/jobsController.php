@@ -138,13 +138,13 @@ class jobsController extends Controller
         $proposals['jobs'] = $jobs->id;
         $proposals = Proposal::all()->where('users_id', '$user_id');
 
-        Proposal::create($proposals);
+        // Proposal::create($proposals);
 
-        // $proposals = Proposal::create([
-        //     'users_id'=>Auth::user()->id,
-        //     'jobs_id' =>$request->jobs_id,
-        //     'deskripsi' => $request-> deskripsi,
-        // ]);
+        $proposals = Proposal::create([
+            'users_id'=>Auth::user()->id,
+            'jobs_id' =>$request->jobs_id,
+            'deskripsi' => $request-> deskripsi,
+        ]);
         
         // dd($proposals);
         return redirect()->back();
