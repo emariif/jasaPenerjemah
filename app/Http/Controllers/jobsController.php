@@ -62,12 +62,6 @@ class jobsController extends Controller
         return view('joblist.create',compact('kategori_bahasa','jobs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -85,7 +79,7 @@ class jobsController extends Controller
             'jumlah_halaman.required' => ' data tidak boleh kosong' ,
             'total_harga.required' => ' data tidak boleh kosong' ,
         ]);
-            // create
+            // create nn
         $data = [
             'users_id'=>Auth::user()->id,
             'userDetails' => User::find('users_id'),
