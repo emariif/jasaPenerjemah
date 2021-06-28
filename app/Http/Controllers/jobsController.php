@@ -146,6 +146,7 @@ class jobsController extends Controller
             'deskripsi' => $request-> deskripsi,
         ]);
         
+        //coba
         // dd($proposals);
         return redirect()->back();
         // $proposals = Proposal::get();
