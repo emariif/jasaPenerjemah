@@ -50,4 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function Proposal(){
         return $this->hasOne('App\Models\Proposal');
     }
+
+    public function detailwork(){
+        return $this->hasMany('App\Models\Detailwork');
+    }
 }

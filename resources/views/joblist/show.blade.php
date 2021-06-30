@@ -120,7 +120,7 @@
                                             @auth
                                                 @if (Auth::user() && Auth::user()->level == 'Client')
                                                 <button class="btn btn-outline-success px-5 py-2" type="button"
-                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;">
+                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;" href="">
                                                     Select Translator
                                                 </button>
                                                 @endif
