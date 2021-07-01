@@ -31,6 +31,13 @@ Route::get('/pembayaran', 'App\Http\Controllers\jobController@payment');
 Route::get('/test', 'App\Http\Controllers\detailJobController@test');
 
 
+// Progress Route
+Route::get('/joblist/{id}', 'App\Http\Controllers\jobsController@edit')->name('joblist_edit');
+Route::post('/joblist/update','App\Http\Controllers\jobsController@update')->name('joblist_update');
+
+Route::get('/joblist/{detailworks}', 'App\Http\Controllers\jobsController@show')->name('get_detailwork');
+Route::post('/joblist/detailwork','App\Http\Controllers\detailworkController@detailwork')->name('joblist_detailwork');
+
 Route::get('/user', 'App\Http\Controllers\userController@index');
 
 // Auth::routes();

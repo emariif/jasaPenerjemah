@@ -41,8 +41,4 @@ class Job extends Model
         // return $this->belongsTo(Kategori_Bahasa::class,'id');
         return $this->hasMany('App\Models\Proposal');
     }
-
-    public function detailwork(){
-        return $this->hasMany('App\Models\Detailwork');
-    }
 }

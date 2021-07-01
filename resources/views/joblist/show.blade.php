@@ -45,7 +45,7 @@
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
                                                         <h6 class="type mt-2" style="color: #1b1b1d">
-                                                            {{$joblist->nama}}
+                                                            {{$joblist->users->name}}
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -68,8 +68,8 @@
                                             </div>
                                         </li>
                                         @auth
-                                            @if (Auth::user() && Auth::user()->level == 'Translator')
-                                            <li class="list-group-item pt-3 pb-4">
+                                        @if (Auth::user() && Auth::user()->level == 'Translator')
+                                        <li class="list-group-item pt-3 pb-4">
                                             <button class="btn btn-dark px-5 py-2 me-3" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#take-job"
                                                 style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
@@ -77,7 +77,7 @@
                                             </button>
                                             <h5 style="display: inline-block;">@currency($joblist->total_harga)</h5>
                                         </li>
-                                            @endif
+                                        @endif
                                         @endauth
 
                                     </ul>
@@ -90,103 +90,257 @@
                             <div class="col-md-10">
                                 @foreach ($proposals->where('jobs_id', $joblist->id) as $proposal)
                                 <div class="card shadow-sm py-2 px-3 mb-3">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+
                                             <li class="list-group-item">
-                                            <div class="col-md-5 mb-2">
-                                                <img class="image--avatar mb-0 me-1" src="images/download.jpg"
-                                                    alt="">
-                                                <div class="item">
-                                                    <h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5>
-                                                    <h6 class="type mt-2" style="color: #1b1b1d">
-                                                        <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                        <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                        <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                        <span><i class="bi bi-star-fill text-warning"></i></span>
-                                                        <span><i
-                                                                class="bi bi-star-fill text-warning pe-1"></i></span>
-                                                        4.9
-                                                    </h6>
+                                                <div class="col-md-5 mb-2">
+                                                    <img class="image--avatar mb-0 me-1" src="images/download.jpg"
+                                                        alt="">
+                                                    <div class="item">
+                                                        <h5 class="type" style="color: #1b1b1d">
+                                                            {{ $proposal->users->name }} </h5>
+                                                        <h6 class="type mt-2" style="color: #1b1b1d">
+                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                                                            <span><i class="bi bi-star-fill text-warning"></i></span>
+                                                            <span><i
+                                                                    class="bi bi-star-fill text-warning pe-1"></i></span>
+                                                            4.9
+                                                        </h6>
+                                                    </div>
+                                                    <div class="dropstart position-absolute top-0 end-0">
+                                                        <button class="btn btn-white  bi bi-three-dots-vertical "
+                                                            type="button" id="dropdownMenuButton"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                            <li>
+                                                                <a type="button" class="dropdown-item"
+                                                                    data-bs-toggle="modal"
+                                                                    href="{{route('joblist_edit',$proposal->id)}}"
+                                                                    data-bs-target="#edit-job">
+                                                                    Edit
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="#">
+                                                                    Delete
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="form-group">
+                                                            <div class="modal" id="edit-job">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header mb-4">
+                                                                            <div class="modal-title mx-3">
+                                                                                <h3 class="pt-1">Update Proposal
+                                                                                </h3>
+                                                                            </div>
+                                                                            <button type="button" class="btn-close mx-3"
+                                                                                data-bs-dismiss="modal"></button>
+                                                                        </div>
+                                                                        <div class="modal-body mx-3 mb-4">
+                                                                            <form action="{{route('joblist_update')}}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                <div class="form-group mb-3 ">
+                                                                                    <input type="text" name="users_id"
+                                                                                        id="name"
+                                                                                        class="form-control input-text py-3 required"
+                                                                                        placeholder="Full Name" disabled
+                                                                                        value="{{$proposal->users->name}}">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <textarea
+                                                                                        class="form-control py-3 input-text required"
+                                                                                        name="deskripsi" rows="5"
+                                                                                        placeholder="Your Message or your offer for translate document"
+                                                                                        style="resize: none;"
+                                                                                        value="">{{$proposal->deskripsi}}</textarea>
+                                                                                </div>
+
+                                                                                <div class="modal-footer">
+                                                                                    <input type="submit" name="edit-job"
+                                                                                        class="form-control btn btn-dark shadow-sm my-3 mx-3 send"
+                                                                                        value="Konfirmasi">
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </div>
-                                            <p class="card-text mb-4">{{ $proposal->deskripsi }}</p>
-                                        </li>
-                                        <li class="list-group-item pt-3 pb-2">
-                                            <p class="card-text text-end mb-3"
-                                                style="font-size: 12px;  color: #4D525B; float: left;">
-                                                Last updated 3 mins ago
-                                            </p>
-                                            @auth
+                                                <p class="card-text mb-4">{{$proposal->deskripsi}}</p>
+                                            </li>
+                                            <li class="list-group-item pt-3 pb-2">
+                                                <p class="card-text text-end mb-3"
+                                                    style="font-size: 12px;  color: #4D525B; float: left;">
+                                                    Last updated 3 mins ago
+                                                </p>
+                                                @auth
                                                 @if (Auth::user() && Auth::user()->level == 'Client')
-                                                <button class="btn btn-outline-success px-5 py-2" type="button"
-                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;" href="">
+                                                {{-- @foreach ($detailwork as $works)
+                                                @endforeach --}}
+                                                <button class="btn btn-outline-success px-5 py-2" type="submit"
+                                                    style="font-size: 14px; background-color: inherit; color: green; float: right;"
+                                                    data-bs-toggle="modal" data-bs-target="#take-translator">
                                                     Select Translator
                                                 </button>
+
+                                                <div class="form-group">
+                                                    <div class="modal" id="take-translator">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header mb-4">
+                                                                    <div class="modal-title mx-3">
+                                                                        <h3 class="pt-1">Lanjut?
+                                                                        </h3>
+                                                                    </div>
+                                                                    <button type="button" class="btn-close mx-3"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body mx-3 mb-4">
+                                                                    <form action="{{route('joblist_detailwork')}}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        {{-- input type --}}
+                                                                        <input type="hidden"
+                                                                            value="{{$proposal->jobs_id}}">
+                                                                        <input type="hidden"
+                                                                            value="{{$proposal->users_id}}">
+                                                                        <input type="hidden"
+                                                                            value="{{ Auth::user()->id }}">
+
+                                                                        <div class="modal-footer">
+                                                                            <input type="submit" name="take-translator"
+                                                                                class="form-control btn btn-dark shadow-sm my-3 mx-3 send"
+                                                                                value="Konfirmasi">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- <form action="" method="POST">
+                                                    <input type="hidden" value="0">
+                                                </form> --}}
                                                 @endif
-                                            @endauth
-                                        </li>
-                                        
-                                            
-                                        
-                                    </ul>
-                                </div>
+                                                @endauth
+                                            </li>
+
+
+
+                                        </ul>
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>
-                                
 
-                            </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
 
-                @auth
-                    @if (Auth::user() && Auth::user()->level == 'Translator')
-                        <div class="modal" id="take-job">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header mb-4">
-                                <div class="modal-title mx-3">
-                                    <h3 class="pt-1">Take a Job</h3>
-                                </div>
-                                <button type="button" class="btn-close mx-3" data-bs-dismiss="modal"></button>
+            @auth
+            @if (Auth::user() && Auth::user()->level == 'Translator')
+            <div class="modal" id="take-job">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header mb-4">
+                            <div class="modal-title mx-3">
+                                <h3 class="pt-1">Take a Job</h3>
                             </div>
-                            <div class="modal-body mx-3 mb-4">
-                                <form action="{{ route('joblist_proposal') }}" method="post">
+                            <button type="button" class="btn-close mx-3" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body mx-3 mb-4">
+                            <form action="{{ route('joblist_proposal') }}" method="post">
                                 @csrf
-                                    <div class="form-group mb-3 ">
-                                        <input type="hidden" name="users_id" id="name"
-                                            class="form-control input-text py-3 required" placeholder="Full Name" value="{{ Auth::user()->name }}">
-                                    </div>
-                                    <div class="form-group mb-3 ">
-                                        <input type="hidden" name="jobs_id" id="name"
-                                            class="form-control input-text py-3 required" value="{{ $joblist->id }}">
-                                    </div>
-                                    {{-- <div class="form-group mb-3">
+                                <div class="form-group mb-3 ">
+                                    <input type="hidden" name="users_id" id="name"
+                                        class="form-control input-text py-3 required" placeholder="Full Name"
+                                        value="{{ Auth::user()->name }}">
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <input type="hidden" name="jobs_id" id="name"
+                                        class="form-control input-text py-3 required" value="{{ $joblist->id }}">
+                                </div>
+                                {{-- <div class="form-group mb-3">
                                         <input type="email" name="your_email" id="your_email"
                                             class="form-control py-3 input-text required" required
                                             pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Address">
                                     </div> --}}
-                                    <div class="form-group mb-3">
-                                        <textarea class="form-control py-3 input-text required" name="deskripsi"
-                                            rows="5" placeholder="Your Message or your offer for translate document"
-                                            style="resize: none;">{{ old('deskripsi') }}</textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                <input type="submit" name="take-job"
-                                    class="form-control btn btn-dark shadow-sm my-3 mx-3 send" value="Send Application">
-                            </div>
-                                </form>
-                            </div>
-                            
+                                <div class="form-group mb-3">
+                                    <textarea class="form-control py-3 input-text required" name="deskripsi" rows="5"
+                                        placeholder="Your Message or your offer for translate document"
+                                        style="resize: none;">{{ old('deskripsi') }}</textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" name="take-job"
+                                        class="form-control btn btn-dark shadow-sm my-3 mx-3 send"
+                                        value="Send Application">
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
-                    @endif
-                @endauth
-                
             </div>
+            @endif
+            @endauth
+            <div class="modal" id="take-translator">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header mb-4">
+                            <div class="modal-title mx-3">
+                                <h3 class="pt-1">Take a Job</h3>
+                            </div>
+                            <button type="button" class="btn-close mx-3" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body mx-3 mb-4">
+                            <form action="{{ route('joblist_proposal') }}" method="post">
+                                @csrf
+                                <div class="form-group mb-3 ">
+                                    <input type="hidden" name="users_id" id="name"
+                                        class="form-control input-text py-3 required" placeholder="Full Name"
+                                        value="{{ Auth::user()->name }}">
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <input type="hidden" name="jobs_id" id="name"
+                                        class="form-control input-text py-3 required" value="{{ $joblist->id }}">
+                                </div>
+                                {{-- <div class="form-group mb-3">
+                                        <input type="email" name="your_email" id="your_email"
+                                            class="form-control py-3 input-text required" required
+                                            pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email Address">
+                                    </div> --}}
+                                <div class="form-group mb-3">
+                                    <textarea class="form-control py-3 input-text required" name="deskripsi" rows="5"
+                                        placeholder="Your Message or your offer for translate document"
+                                        style="resize: none;">{{ old('deskripsi') }}</textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" name="take-translator"
+                                        class="form-control btn btn-dark shadow-sm my-3 mx-3 send"
+                                        value="Send Application">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 </body>

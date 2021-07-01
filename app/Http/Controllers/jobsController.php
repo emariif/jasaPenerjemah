@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detailjob;
+use App\Models\Detailwork;
 use App\Models\Kategori_Bahasa;
 use App\Models\Job;
 use App\Models\User;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class jobsController extends Controller
 {
@@ -175,6 +177,8 @@ class jobsController extends Controller
     public function edit($id)
     {
         //
+        Proposal::table('proposals')->where('id',$id)->get();
+
     }
 
     /**
@@ -184,9 +188,13 @@ class jobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        DB::table('proposals')->where('users_id',$request->id)->update([
+            'deskripsi' => $request->deskripsi,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -198,5 +206,32 @@ class jobsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function detailwork(Request $request){
+        $validated = request([
+            'status' => 'required',
+            'jobs_id' => 'required',
+            'users_id' => 'required',
+        ]);
+
+        $detailworks = [
+            'users_id'=>$request->users_id,
+            'jobs_id' =>$request->jobs_id,
+            'status' => $request-> status,
+        ];
+
+        $jobs = Job::all()->where('id',$detailworks['jobs_id'])->first();
+        $detailworks ['jobs'] = $jobs->id;
+        $detailworks = Detailwork::all()->where('users_id', '$user_id');
+
+        $detailworks = Detailwork::create([
+            'users_id'=>$request->users_id,
+            'jobs_id' =>$request->jobs_id,
+            'status' => $request-> status,
+        ]);
+
+        redirect()->back();
+
+
     }
 }
