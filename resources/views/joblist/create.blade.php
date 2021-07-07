@@ -30,7 +30,7 @@
                 </form> --}}
 
                 <div id="uploader">
-                    <form action="{{url('joblist')}}" method="POST">
+                    <form action="{{url('joblist')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row uploadDoc">
                             <div class="col-sm-3">
@@ -39,13 +39,13 @@
                                 <div class="fileUpload btn btn-orange">
                                     <img src="https://image.flaticon.com/icons/svg/136/136549.svg" class="icon" />
                                     <span class="upl" id="upload">Upload document</span>
-                                    <input type="file" class="upload up" id="up" onchange="readURL(this);" />
+                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" />
                                 </div>
                                 <!-- btn-orange -->
                             </div>
                             <!-- col-3 -->
                             <div class="col-sm-8">
-                                <input type="text" class="form-control-note" name="nama_job" placeholder="Note" />
+                                <input type="text" class="form-control-note" name="nama_job" placeholder="Title" />
 
                             </div>
                             <!--col-8-->
@@ -91,7 +91,7 @@
                                 <h6 class="mb-3">Delivery</h6>
                                 <select name="durasi" class="form-select  @error ('deskripsi') is-invalid @enderror"
                                     aria-label="Default select example">
-                                    <option selected>Select...</option>
+                                    <option disabled value="" selected>Select...</option>
                                     <option value="1">1 Days</option>
                                     <option value="2">3 Days</option>
                                     <option value="3">7 Days</option>
@@ -125,7 +125,7 @@
                 </div>
                 <!--uploader-->
                 <div class="text-start">
-                    <a class="btn btn-new me-2"><i class="fa fa-plus"></i> Add new</a>
+                    {{-- <a class="btn btn-new me-2"><i class="fa fa-plus"></i> Add new</a> --}}
                     {{-- <a class="btn btn-next" type="submit" href="{{url('joblist/create')}}"><i
                         class="fa fa-paper-plane"></i>
                     Submit</a> --}}

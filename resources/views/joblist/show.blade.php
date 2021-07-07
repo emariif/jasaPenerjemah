@@ -45,7 +45,7 @@
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
                                                         <h6 class="type mt-2" style="color: #1b1b1d">
-                                                            {{$joblist->nama}}
+                                                            {{$joblist->users->name}}
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </li>
                                         @auth
-                                            @if (Auth::user() && Auth::user()->level == 'Translator')
+                                            @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false')
                                             <li class="list-group-item pt-3 pb-4">
                                             <button class="btn btn-dark px-5 py-2 me-3" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#take-job"
@@ -76,6 +76,19 @@
                                                 Take a Job
                                             </button>
                                             <h5 style="display: inline-block;">@currency($joblist->total_harga)</h5>
+                                        </li>
+                                            @elseif (Auth::user() && Auth::user()->level == 'Client' && $proposals['is_onprogress'] == 'true')
+                                            <li class="list-group-item pt-3 pb-4">
+                                            <a href="{{route('jobtransaction',$joblist->id)}}" class="btn btn-dark px-5 py-2 me-3"
+                                                style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
+                                                Lihat Pekerjaan
+                                            </a>
+                                            @elseif ($joblist->translator_id == Auth::user()->id)
+                                            <li class="list-group-item pt-3 pb-4">
+                                            <a href="{{route('jobtransaction',$joblist->id)}}" class="btn btn-dark px-5 py-2 me-3"
+                                                style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
+                                                Lihat Pekerjaan
+                                            </a>
                                         </li>
                                             @endif
                                         @endauth
@@ -118,11 +131,16 @@
                                                 Last updated 3 mins ago
                                             </p>
                                             @auth
-                                                @if (Auth::user() && Auth::user()->level == 'Client')
-                                                <button class="btn btn-outline-success px-5 py-2" type="button"
+                                                @if (Auth::user() && Auth::user()->level == 'Client' )
+                                                <form action="{{route('joblist_submit')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$joblist->id}}">
+                                                    <input type="hidden" name="translator_id" value="{{$proposal->users->id}}">
+                                                <button class="btn btn-outline-success px-5 py-2" type="submit"
                                                     style="font-size: 14px; background-color: inherit; color: green; float: right;">
                                                     Select Translator
                                                 </button>
+                                                </form>
                                                 @endif
                                             @endauth
                                         </li>
@@ -142,7 +160,7 @@
                 </div>
 
                 @auth
-                    @if (Auth::user() && Auth::user()->level == 'Translator')
+                    @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false')
                         <div class="modal" id="take-job">
                     <div class="modal-dialog">
                         <div class="modal-content">

@@ -2,86 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profile;
-use App\Models\User;
+use App\Models\Job;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class profileController extends Controller
+class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // $users = profile::all();
-       
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(profile $profile)
-    {
-        //
+    public function index(){
+            $user = Auth::user();
+            if(Auth::user()->level != 'translator'){
+                return redirect()->back();
+            }
+            $jobs = Job::where('translator_id',$user->id)->get();
+            $data[]=[];
+            $data['active']= Job::where('translator_id',$user->id)->where('file_translated',null)->get();
+            $data['finish']= Job::where('translator_id',$user->id)->where('file_translated','!=',null)->get();
+            $data['bids']= Proposal::where('users_id',$user->id)->get();
+        return view('profile.profile')->with('job',$jobs)->with('data',$data);
     }
 }

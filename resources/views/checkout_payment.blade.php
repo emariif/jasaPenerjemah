@@ -141,6 +141,7 @@
                                     <input type="hidden" name="durasi" value="{{$data['durasi']}}">
                                     <input type="hidden" name="jumlah_halaman" value="{{$data['jumlah_halaman']}}">
                                     <input type="hidden" name="total_harga" value="{{$data['total_harga']}}">
+                                    <input type="hidden" name="file" value="{{$data['file']}}">
                                     <input type="hidden" name="kategori_bahasa_id" value="{{$data['kategori_bahasa_id']}}">
                                     <input type="submit" name="register"
                                         class="form-control btn btn-dark px-3 shadow-sm register" value="Confirm & Pay">

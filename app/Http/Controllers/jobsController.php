@@ -64,7 +64,9 @@ class jobsController extends Controller
 
     public function store(Request $request)
     {
+
         $validated = $request->validate([
+			'file' => 'required|file|mimes:pdf',
             'kategori_bahasa_id' => 'required|max:255',
             'nama_job' => 'required',
             'deskripsi' => 'required',
@@ -79,7 +81,13 @@ class jobsController extends Controller
             'jumlah_halaman.required' => ' data tidak boleh kosong' ,
             'total_harga.required' => ' data tidak boleh kosong' ,
         ]);
-            // create nn
+		// menyimpan data file yang diupload ke variabel $file
+		$file = $request->file('file');
+		$nama_file = time()."_".Auth::user()->id.".pdf";
+        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'data_file';
+		$file->move($tujuan_upload,$nama_file);
+ 
         $data = [
             'users_id'=>Auth::user()->id,
             'userDetails' => User::find('users_id'),
@@ -89,6 +97,7 @@ class jobsController extends Controller
             'jumlah_halaman' => $request-> jumlah_halaman,
             'total_harga' => $request-> total_harga,
             'kategori_bahasa_id' => $request-> kategori_bahasa_id,
+			'file' => $nama_file,
             ];
             $bahasa = Kategori_Bahasa::all()->where('id',$data['kategori_bahasa_id'])->first();
             $data['kategori_bahasa'] = $bahasa->nama_kategori_bahasa;
@@ -111,11 +120,12 @@ class jobsController extends Controller
             'users_id'=>Auth::user()->id,
             'userDetails' => User::find('users_id'),
             'nama_job' =>$request->nama_job,
-            'deskripsi' => $request-> deskripsi,
-            'durasi' => $request-> durasi,
-            'jumlah_halaman' => $request-> jumlah_halaman,
-            'total_harga' => $request-> total_harga,
-            'kategori_bahasa_id' => $request-> kategori_bahasa_id,
+            'deskripsi' => $request->deskripsi,
+            'durasi' => $request->durasi,
+            'jumlah_halaman' => $request->jumlah_halaman,
+            'total_harga' => $request->total_harga,
+            'kategori_bahasa_id' => $request->kategori_bahasa_id,
+			'file' => $request->file,
             ]);
             return redirect('joblist');
     }
@@ -163,6 +173,21 @@ class jobsController extends Controller
     {
         $jobs_id = Job::find($joblist);
         $proposals = Proposal::where('jobs_id', $joblist->id)->get();
+        if($proposals->toArray() != null){
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+            if($proposals[0]['users_id'] == Auth::user()->id){
+                $proposals['is_taken']='true';
+            }
+            if($jobs_id[0]['translator_id'] != null){
+                $proposals['is_onprogress']='true';
+            }         
+
+        }
+        else{
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+        }
         return view('joblist.show',compact('joblist','proposals') );
         // return $joblist;
     }
@@ -176,6 +201,14 @@ class jobsController extends Controller
     public function edit($id)
     {
         //
+    }
+    public function submit(Request $request)
+    {
+         
+        $jobs_id = Job::find($request->id);
+        $jobs_id->translator_id = $request->translator_id;
+        $jobs_id->save();
+        return redirect('/jobtransaction/'.$request->id);
     }
 
     /**
