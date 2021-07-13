@@ -21,7 +21,7 @@ class jobsController extends Controller
     public function index()
     {
         // $jobs = Job::all();
-        $jobs = Job::get();
+        $jobs = Job::orderBy('id', 'desc')->paginate(9);
         $users = User::all();
         return view('joblist.index',compact('jobs','users'));
         
