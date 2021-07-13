@@ -11,8 +11,8 @@ class ProfileController extends Controller
 {
     public function index(){
             $user = Auth::user();
-            if(Auth::user()->level != 'translator'){
-                return redirect()->back();
+            if(Auth::user()->level != 'Translator'){
+                return redirect()->route('profile.profile');
             }
             $jobs = Job::where('translator_id',$user->id)->get();
             $data[]=[];

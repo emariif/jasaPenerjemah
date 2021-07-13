@@ -1,91 +1,14 @@
-<html>
+@extends('nav/nav_landing')
+{{-- @section('title', 'Detail Job') --}}
+@section('konten')
 
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/mailstyle.css" />
   <link rel="stylesheet" href="css/2.css" />
   <link rel="stylesheet" href="css/nav.css" />
-
-  <!-- bootstrap-icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
-
-</head>
+  <link rel="stylesheet" type="text/css" href="/css/detail-job.css">
 
 <body id="jobDetails">
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container mt-2">
-      <a class="navbar-brand" href="#">
-        <img src="images/Translator..svg" alt="" width="113" height="29" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="job-listing.html">Job Listing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">FAQ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-inline-block d-sm-none">
-              <img src="images/users/user-1.jpg" class="img-fluid rounded" alt="" />
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item">a</a></li>
-              <li><a class="dropdown-item">b</a></li>
-              <li><a class="dropdown-item">c</a></li>
-            </ul>
-          </li>
-          <nav class="navbar-expand-sm">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar-list-4">
-              <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
-                      width="30" height="30" class="rounded-circle" />
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Setting</a>
-                    <a class="dropdown-item" href="profile_translator.html">Profile</a>
-                    <a class="dropdown-item" href="#">Log Out</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- akhir navbar -->
+  
 
   <div class="container space mt-5">
     <div class="row justify-content-center">
@@ -226,3 +149,6 @@
 </body>
 
 </html>
+
+@include('includes.footer')
+@endsection
