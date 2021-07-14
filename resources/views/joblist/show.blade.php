@@ -40,7 +40,7 @@
                                             <div class="row py-3">
 
                                                 <div class="col-md-2 ">
-                                                    <img class="image--avatar mb-0" src="images/download.jpg" alt="">
+                                                    <img class="image--avatar mb-0" src="/images/download.jpg" alt="">
 
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
