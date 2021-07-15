@@ -21,7 +21,15 @@ class jobsController extends Controller
     public function index()
     {
         // $jobs = Job::all();
-        $jobs = Job::get();
+        $jobs = Job::orderBy('id', 'desc')->paginate(9);
+        $users = User::all();
+        return view('joblist.index',compact('jobs','users'));
+        
+    }
+    public function cari(Request $request)
+    {
+        // $jobs = Job::all();
+        $jobs = Job::where('nama_job', 'like', '%'.$request->cari.'%')->orderBy('id', 'desc')->paginate(9);
         $users = User::all();
         return view('joblist.index',compact('jobs','users'));
         
@@ -171,7 +179,8 @@ class jobsController extends Controller
      */
     public function show(Job $joblist, Proposal $proposals)
     {
-        $jobs_id = Job::find($joblist);
+        
+        $jobs_id = $joblist->id;
         $proposals = Proposal::where('jobs_id', $joblist->id)->get();
         if($proposals->toArray() != null){
             $proposals['is_taken']='false';
@@ -179,7 +188,7 @@ class jobsController extends Controller
             if($proposals[0]['users_id'] == Auth::user()->id){
                 $proposals['is_taken']='true';
             }
-            if($jobs_id[0]['translator_id'] != null){
+            if($joblist['translator_id'] != null){
                 $proposals['is_onprogress']='true';
             }         
 

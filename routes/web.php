@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', 'HomeController@index');
 
 // joblist Route
+Route::post('/cari', 'App\Http\Controllers\jobsController@cari')->name('cari');
 Route::get('/joblist', 'App\Http\Controllers\jobsController@index');
 Route::post('/joblist', 'App\Http\Controllers\jobsController@store');
 Route::get('/joblist/create', 'App\Http\Controllers\jobsController@create');
@@ -35,6 +36,7 @@ Route::get('/jobtransaction/{id}', 'App\Http\Controllers\JobTransaction@index')-
 Route::post('/jobtransaction/{id}/file', 'App\Http\Controllers\JobTransaction@file')->name('jobtransaction_post_file');
 
 Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+Route::get('/profile/translator/{id}', 'App\Http\Controllers\ProfileController@show')->name('profile_translator');
 
 
 Route::get('/user', 'App\Http\Controllers\userController@index');

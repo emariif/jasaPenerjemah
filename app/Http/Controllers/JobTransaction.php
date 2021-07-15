@@ -10,7 +10,7 @@ class JobTransaction extends Controller
 {
         public function index($id){
             $jobs = Job::find($id);
-            $jobs['status']='paid';
+            $jobs['status']='pending';
             $jobs['color']='bg-warning';
             if($jobs['translator_id']!=null){
                 if($jobs['file_translated']!=null){

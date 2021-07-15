@@ -77,6 +77,14 @@
                                 <p class="text-end">{{$data['kategori_bahasa']}}</p>
                             </div>
                         </div>
+                        <div class="row detail type justify-content-between">
+                            <div class="col-md-5">
+                                <p class="text-start">File</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="text-end"><a href="{{asset('data_file')}}/{{$data['file']}}">{{$data['file']}}</a></p>
+                            </div>
+                        </div>
                         <div class="row detail page justify-content-between">
                             <div class="col-md-8">
                                 <p class="text-start">Number of Page</p>

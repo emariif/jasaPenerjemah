@@ -39,7 +39,7 @@
                                 <div class="fileUpload btn btn-orange">
                                     <img src="https://image.flaticon.com/icons/svg/136/136549.svg" class="icon" />
                                     <span class="upl" id="upload">Upload document</span>
-                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" />
+                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" accept="application/pdf" />
                                 </div>
                                 <!-- btn-orange -->
                             </div>

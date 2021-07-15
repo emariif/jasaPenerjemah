@@ -68,7 +68,7 @@
                                             </div>
                                         </li>
                                         @auth
-                                            @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false')
+                                            @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false' && $proposals['is_onprogress'] == 'false')
                                             <li class="list-group-item pt-3 pb-4">
                                             <button class="btn btn-dark px-5 py-2 me-3" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#take-job"
@@ -111,7 +111,7 @@
                                                 <img class="image--avatar mb-0 me-1" src="images/download.jpg"
                                                     alt="">
                                                 <div class="item">
-                                                    <h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5>
+                                                    <a href="{{route('profile_translator',$proposal->users_id)}}"><h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5></a>
                                                     <h6 class="type mt-2" style="color: #1b1b1d">
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
@@ -131,7 +131,10 @@
                                                 Last updated 3 mins ago
                                             </p>
                                             @auth
-                                                @if (Auth::user() && Auth::user()->level == 'Client' )
+                                                @if (Auth::user() && Auth::user()->level == 'Client' && Auth::user()->id == $joblist->users_id )
+                                                
+                                                @if ($proposals['is_onprogress'] == 'false')
+
                                                 <form action="{{route('joblist_submit')}}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$joblist->id}}">
@@ -141,6 +144,7 @@
                                                     Select Translator
                                                 </button>
                                                 </form>
+                                                @endif
                                                 @endif
                                             @endauth
                                         </li>
@@ -160,7 +164,7 @@
                 </div>
 
                 @auth
-                    @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false')
+                    @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false' && $proposals['is_onprogress'] == 'false')
                         <div class="modal" id="take-job">
                     <div class="modal-dialog">
                         <div class="modal-content">
