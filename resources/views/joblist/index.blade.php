@@ -8,7 +8,7 @@
     <!-- Job Listing -->
     <div class="job pt-5">
         <div class="container">
-            <div class="card bg-dark text-white text-center mb-5">
+            <div class="card bg-dark text-white text-center mb-4">
                 <img src="/images/cover-job.jpg" class="card-img" alt="..." />
                 @auth
                     @if (Auth::user() && Auth::user()->level == 'Client')
@@ -19,11 +19,6 @@
                             <a href="{{ url('joblist/create') }}" class="btn btn-light text-dark ps-4 pe-4 pt-2 pb-2 fw-bolder"
                                 style="color: white; font-size: 14px;">Buat Job
                                 Baru</a>
-                                <form action="{{route('cari')}}" method="post">
-                                    @csrf
-                                    <input type="text" name="cari">
-                                    <button>Cari</button>
-                                </form>
                         </div>   
                     @endif   
                     @if (Auth::user() && Auth::user()->level == 'Translator')
@@ -31,18 +26,22 @@
                             <h1 class="fs-2 fw-bolder pb-3 pt-5">Client Job Listings</h1>
                             <p class="lead fs-6 fw-normal mb-5">There are limited proposals per job listing. Once full, an error
                             message will appear. You can try other available listings.</p>
-                            <form action="{{route('cari')}}" method="post">
-                                @csrf
-                                <input type="text" name="cari">
-                                <button>Cari</button>
-                            </form>
                         </div>
                     @endif       
                 @endauth
                 
             
-        </div>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+            </div>
+            
+            <div class="input-group mb-3">
+                <form action="{{route('cari')}}" method="post">
+                    @csrf
+                    <input type="text" name="cari" class="form-controls" placeholder="Masukkan Pencarian" aria-label="Masukkan Pencarian" aria-describedby="button-addon2">
+                    <button class="btn btn-dark" id="button-addon2"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 @foreach ($jobs as $Job)
                 <div class="job col">
@@ -62,7 +61,7 @@
                                         <div class="item">
                                             <h6 class="type" style="color: #9fa5b1">User</h6>
                                             <h6 class="type mt-2" style="color: #1b1b1d">
-                                                {{$Job->users->name}}
+                                                {{$Job->users->username}}
                                             </h6>
                                         </div>
                                         {{-- @endforeach --}}

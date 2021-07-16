@@ -74,7 +74,7 @@ class jobsController extends Controller
     {
 
         $validated = $request->validate([
-			'file' => 'required|file|mimes:pdf',
+			'file' => 'required|file|mimes:pdf,doc,docx,zip',
             'kategori_bahasa_id' => 'required|max:255',
             'nama_job' => 'required',
             'deskripsi' => 'required',
@@ -91,7 +91,7 @@ class jobsController extends Controller
         ]);
 		// menyimpan data file yang diupload ke variabel $file
 		$file = $request->file('file');
-		$nama_file = time()."_".Auth::user()->id.".pdf";
+		$nama_file = time()."_".Auth::user()->id.".".$file->getClientOriginalExtension();;
         // isi dengan nama folder tempat kemana file diupload
 		$tujuan_upload = 'data_file';
 		$file->move($tujuan_upload,$nama_file);
@@ -179,18 +179,22 @@ class jobsController extends Controller
      */
     public function show(Job $joblist, Proposal $proposals)
     {
-        
+        $user=Auth::user();
         $jobs_id = $joblist->id;
         $proposals = Proposal::where('jobs_id', $joblist->id)->get();
-        if($proposals->toArray() != null){
+        $is_proposals = Proposal::where('jobs_id', $joblist->id)->first();
+        $is_taken = Proposal::where('jobs_id', $joblist->id)->where('users_id', $user->id)->first();
+        if($is_proposals != null){
             $proposals['is_taken']='false';
             $proposals['is_onprogress']='false';
-            if($proposals[0]['users_id'] == Auth::user()->id){
+            if($is_taken != null){
+                if($is_taken['users_id'] == Auth::user()->id){
                 $proposals['is_taken']='true';
+                }
             }
             if($joblist['translator_id'] != null){
                 $proposals['is_onprogress']='true';
-            }         
+            }
 
         }
         else{

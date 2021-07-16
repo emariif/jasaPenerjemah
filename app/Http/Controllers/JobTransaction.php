@@ -11,14 +11,14 @@ class JobTransaction extends Controller
         public function index($id){
             $jobs = Job::find($id);
             $jobs['status']='pending';
-            $jobs['color']='bg-warning';
+            $jobs['color']='bg-danger';
             if($jobs['translator_id']!=null){
                 if($jobs['file_translated']!=null){
                     $jobs['status']='finish';
                     $jobs['color']='bg-success';
                 }else{
                     $jobs['status']='progress';
-                    $jobs['color']='bg-primary';
+                    $jobs['color']='bg-warning';
 
                 }
             }
@@ -27,7 +27,7 @@ class JobTransaction extends Controller
     public function file(Request $request,$id)
     {
         $validated = $request->validate([
-			'file' => 'required|file|mimes:pdf',
+			'file' => 'required|file|mimes:pdf,doc,docx,zip',
         ]);
 		// menyimpan data file yang diupload ke variabel $file
 		$file = $request->file('file');

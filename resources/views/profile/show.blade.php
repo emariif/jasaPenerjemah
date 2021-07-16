@@ -44,7 +44,7 @@
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
                           </td>
                           <td class="cell">{{$row->users->name}}</td>
-                          <td class="cell"><span class="badge bg-primary">Progress</span></td>
+                          <td class="cell"><span class="badge bg-warning">Progress</span></td>
                           <td class="cell">{{$row->jumlah_halaman}}</td>
                           <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>

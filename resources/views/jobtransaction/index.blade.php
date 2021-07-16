@@ -125,7 +125,7 @@
                   <td>
                       <form action="{{route('jobtransaction_post_file',$job['id'])}}" method="POST" enctype="multipart/form-data">
                           @csrf
-                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" /> 
+                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" accept="application/pdf, application/msword" /> 
                           <button class="btn btn-primary btn-sm"><i class=" fa fa-paper-plane"></i>Submit</button>
                       </form>
                   </td>

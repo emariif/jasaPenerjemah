@@ -40,12 +40,12 @@
                                             <div class="row py-3">
 
                                                 <div class="col-md-2 ">
-                                                    <img class="image--avatar mb-0" src="images/download.jpg" alt="">
+                                                    <img class="image--avatar mb-0" src="/images/download.jpg" alt="">
 
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
                                                         <h6 class="type mt-2" style="color: #1b1b1d">
-                                                            {{$joblist->users->name}}
+                                                            {{$joblist->users->username}}
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                             </button>
                                             <h5 style="display: inline-block;">@currency($joblist->total_harga)</h5>
                                         </li>
-                                            @elseif (Auth::user() && Auth::user()->level == 'Client' && $proposals['is_onprogress'] == 'true')
+                                            @elseif (Auth::user() && Auth::user()->level == 'Client' && $proposals['is_onprogress'] == 'true' && Auth::user()->id == $joblist->users_id)
                                             <li class="list-group-item pt-3 pb-4">
                                             <a href="{{route('jobtransaction',$joblist->id)}}" class="btn btn-dark px-5 py-2 me-3"
                                                 style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
@@ -108,7 +108,7 @@
                                         
                                             <li class="list-group-item">
                                             <div class="col-md-5 mb-2">
-                                                <img class="image--avatar mb-0 me-1" src="images/download.jpg"
+                                                <img class="image--avatar mb-0 me-1" src="/images/download.jpg"
                                                     alt="">
                                                 <div class="item">
                                                     <a href="{{route('profile_translator',$proposal->users_id)}}"><h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5></a>
