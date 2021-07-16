@@ -173,7 +173,7 @@
                     <p class="mb-4 fs-5">Deadline tepat waktu sesuai dengan kesepakatan dan permintaan dari client.</p>
                 </div>
                 <div class="row">
-                    <h5 class="fs-5"><i class="bi bi-check-circle"></i> Fast Respone</h5>
+                    <h5 class="fs-5"><i class="bi bi-check-circle"></i> Fast Response</h5>
                     <p class="mb-4 fs-5">Setiap dokumen yang akan diterjemahkan akan langsung dikerjakan freelancer.</p>
                 </div>
                 <div class="row">

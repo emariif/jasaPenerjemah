@@ -41,6 +41,8 @@ Route::get('/profile/translator/{id}', 'App\Http\Controllers\ProfileController@s
 
 Route::get('/user', 'App\Http\Controllers\userController@index');
 
+Route::get('/faq', 'App\Http\Controllers\faqController@index');
+
 // Auth::routes();
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');

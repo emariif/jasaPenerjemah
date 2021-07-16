@@ -74,6 +74,8 @@ class RegisterController extends Controller
             'level' => $data['level'],
         ]);
 
+        return view('landing_page');
+
         // $tipe_user = User::get();
         // return view('register',['data' => $tipe_user]);
 

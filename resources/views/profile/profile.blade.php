@@ -178,7 +178,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($data['active'] as $row)
+                          @foreach ($data['finish'] as $row)
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
@@ -209,9 +209,9 @@
               </nav>
               <!--//app-pagination-->
             </div>
-            <!--//tab-pane-->
-
-            <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+            @if(Auth::user()->level == 'Client')
+            <!-- akhirorder -->
+            <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
               <div class="app-card app-card-orders-table mb-5">
                 <div class="app-card-body">
                   <div class="table-responsive">
@@ -227,13 +227,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($data['finish'] as $row)
+                          @foreach ($data['pending'] as $row)
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
                           </td>
                           <td class="cell">{{$row->users->name}}</td>
-                          <td class="cell"><span class="badge bg-success">Finish</span></td>
+                          <td class="cell"><span class="badge bg-danger">pending</span></td>
                           <td class="cell">{{$row->jumlah_halaman}}</td>
                           <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>
