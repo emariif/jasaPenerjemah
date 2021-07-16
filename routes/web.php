@@ -39,6 +39,8 @@ Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('pr
 
 Route::get('/user', 'App\Http\Controllers\userController@index');
 
+Route::get('/faq', 'App\Http\Controllers\faqController@index');
+
 // Auth::routes();
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');

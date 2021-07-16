@@ -8,22 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class JobTransaction extends Controller
 {
-        public function index($id){
-            $jobs = Job::find($id);
-            $jobs['status']='paid';
-            $jobs['color']='bg-warning';
-            if($jobs['translator_id']!=null){
-                if($jobs['file_translated']!=null){
-                    $jobs['status']='finish';
-                    $jobs['color']='bg-success';
-                }else{
-                    $jobs['status']='progress';
-                    $jobs['color']='bg-primary';
+    public function index($id){
+        $jobs = Job::find($id);
+        $jobs['status']='pending';
+        $jobs['color']='bg-warning';
+        if($jobs['translator_id']!=null){
+            if($jobs['file_translated']!=null){
+                $jobs['status']='finish';
+                $jobs['color']='bg-success';
+            }else{
+                $jobs['status']='progress';
+                $jobs['color']='bg-primary';
 
-                }
             }
-            return view('jobtransaction.index')->with('job',$jobs);
         }
+        return view('jobtransaction.index')->with('job',$jobs);
+    }
+
     public function file(Request $request,$id)
     {
         $validated = $request->validate([

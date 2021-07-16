@@ -40,7 +40,7 @@
                                             <div class="row py-3">
 
                                                 <div class="col-md-2 ">
-                                                    <img class="image--avatar mb-0" src="/images/download.jpg" alt="">
+                                                    <img class="image--avatar mb-0" src="images/download.jpg" alt="">
 
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
@@ -132,6 +132,7 @@
                                             </p>
                                             @auth
                                                 @if (Auth::user() && Auth::user()->level == 'Client' )
+                                                @if ($proposals['is_onprogress'] == 'false')
                                                 <form action="{{route('joblist_submit')}}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$joblist->id}}">
@@ -141,6 +142,7 @@
                                                     Select Translator
                                                 </button>
                                                 </form>
+                                                @endif
                                                 @endif
                                             @endauth
                                         </li>

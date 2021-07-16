@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,8 @@ class ProfileController extends Controller
         if (Auth::user()->level != 'Translator') {
             $jobs = Job::where('users_id', $user->id)->get();
             $data[] = [];
+            $data['user'] = User::where('id', $user->id)->get();
+            $data['pending'] = Job::where('users_id', $user->id)->where('file_translated', null)->where('translator_id', null)->orderBy('id', 'desc')->paginate(10);
             $data['active'] = Job::where('users_id', $user->id)->where('file_translated', null)->orderBy('id', 'desc')->paginate(10);
             $data['finish'] = Job::where('users_id', $user->id)->where('file_translated', '!=', null)->orderBy('id', 'desc')->paginate(10);
             $data['bids'] = Proposal::where('users_id', $user->id)->get();
@@ -22,6 +25,7 @@ class ProfileController extends Controller
         }
         $jobs = Job::where('translator_id', $user->id)->get();
         $data[] = [];
+        $data['user'] = User::where('id', $user->id)->get();
         $data['active'] = Job::where('translator_id', $user->id)->where('file_translated', null)->orderBy('id', 'desc')->paginate(10);
         $data['finish'] = Job::where('translator_id', $user->id)->where('file_translated', '!=', null)->orderBy('id', 'desc')->paginate(10);
         $data['bids'] = Proposal::where('users_id', $user->id)->get();
