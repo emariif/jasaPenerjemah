@@ -1,32 +1,13 @@
+@extends('nav/nav_landing')
+@section('title','Checkout Payment')
+@section('konten')
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
-
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/checkout-payment.css" />
-    <title>Pembayaran</title>
-</head>
 
 <body>
-    <div class="container">
+    <div class="container pt-5">
+        <h3 class="pb-3 mt-2">Job Payment</h3>
         <div class="row">
             <div class="col-md">
                 <div class="card payment w-100" style="width: 18rem;">
@@ -85,7 +66,7 @@
             <div class="col-md-4">
                 <div class="card job">
                     <div class="card-body">
-                        <h5 class="card-title">{{$data['nama_job']}}</h5>
+                        <h5 class="card-title fw-normal">{{$data['nama_job']}}</h5>
                         <p class="card-text">{{$data['deskripsi']}}</p>
                         <p class="sub">Detail Job</p>
                         <div class="row detail type justify-content-between">
@@ -94,6 +75,14 @@
                             </div>
                             <div class="col-md-7">
                                 <p class="text-end">{{$data['kategori_bahasa']}}</p>
+                            </div>
+                        </div>
+                        <div class="row detail type justify-content-between">
+                            <div class="col-md-5">
+                                <p class="text-start">File</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="text-end"><a href="{{asset('data_file')}}/{{$data['file']}}">{{$data['file']}}</a></p>
                             </div>
                         </div>
                         <div class="row detail page justify-content-between">
@@ -141,6 +130,7 @@
                                     <input type="hidden" name="durasi" value="{{$data['durasi']}}">
                                     <input type="hidden" name="jumlah_halaman" value="{{$data['jumlah_halaman']}}">
                                     <input type="hidden" name="total_harga" value="{{$data['total_harga']}}">
+                                    <input type="hidden" name="file" value="{{$data['file']}}">
                                     <input type="hidden" name="kategori_bahasa_id" value="{{$data['kategori_bahasa_id']}}">
                                     <input type="submit" name="register"
                                         class="form-control btn btn-dark px-3 shadow-sm register" value="Confirm & Pay">
@@ -193,4 +183,5 @@
 
 </body>
 
-</html>
+@include('includes.footer')
+@endsection

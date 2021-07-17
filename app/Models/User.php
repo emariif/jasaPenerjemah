@@ -43,14 +43,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\Detailjob');
         return $this->hasOne('App\Models\Job');
     }
+    public function Translator(){
+        return $this->hasOne('App\Models\Job','id','transaction_id');
+    }
     public function job(){
         return $this->hasOne('App\Models\Detailjob');
         return $this->hasOne('App\Models\Job');
     }
     public function Proposal(){
         return $this->hasOne('App\Models\Proposal');
-    }
-    public function detailwork(){
-        return $this->hasOne('App\Models\Detailwork');
     }
 }

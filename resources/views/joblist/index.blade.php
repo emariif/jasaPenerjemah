@@ -8,7 +8,7 @@
     <!-- Job Listing -->
     <div class="job pt-5">
         <div class="container">
-            <div class="card bg-dark text-white text-center mb-5">
+            <div class="card bg-dark text-white text-center mb-4">
                 <img src="/images/cover-job.jpg" class="card-img" alt="..." />
                 @auth
                     @if (Auth::user() && Auth::user()->level == 'Client')
@@ -31,8 +31,17 @@
                 @endauth
                 
             
-        </div>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+            </div>
+            
+            <div class="input-group mb-3">
+                <form action="{{route('cari')}}" method="post">
+                    @csrf
+                    <input type="text" name="cari" class="form-controls" placeholder="Masukkan Pencarian" aria-label="Masukkan Pencarian" aria-describedby="button-addon2">
+                    <button class="btn btn-dark" id="button-addon2"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 @foreach ($jobs as $Job)
                 <div class="job col">
@@ -43,7 +52,7 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">{{$Job->nama_job}}</h5>
-                                <p class="card-text">{{$Job->deskripsi}}</p>
+                                <p class="card-text " style="overflow-y: hidden;max-height: 80px;">{{$Job->deskripsi}}</p>
                                 <div class="row mt-4">
                                     <div class="col-md">
                                         {{-- @foreach ($users as $user) --}}
@@ -52,7 +61,7 @@
                                         <div class="item">
                                             <h6 class="type" style="color: #9fa5b1">User</h6>
                                             <h6 class="type mt-2" style="color: #1b1b1d">
-                                                {{$Job->users->name}}
+                                                {{$Job->users->username}}
                                             </h6>
                                         </div>
                                         {{-- @endforeach --}}
@@ -224,15 +233,12 @@
         </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center MT mt-5">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
+            <li class="page-item <?php if($jobs->onFirstPage()){echo 'disabled';}else{echo '';}?>">
+                    <a class="page-link" href="{{$jobs->previousPageUrl()}}" tabindex="-1" <?php if($jobs->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
+                  </li>
+                  <li class="page-item <?php if($jobs->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>"">
+                    <a class="page-link" href="{{$jobs->nextPageUrl()}}">Next</a>
+                  </li>
             </ul>
         </nav>
     </div>

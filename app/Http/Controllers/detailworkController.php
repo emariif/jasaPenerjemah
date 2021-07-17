@@ -16,6 +16,8 @@ class detailworkController extends Controller
     public function index()
     {
         //
+        Detailwork::all();
+        return view();
     }
 
     /**

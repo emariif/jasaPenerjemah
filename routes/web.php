@@ -21,22 +21,23 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', 'HomeController@index');
 
 // joblist Route
+Route::post('/cari', 'App\Http\Controllers\jobsController@cari')->name('cari');
 Route::get('/joblist', 'App\Http\Controllers\jobsController@index');
 Route::post('/joblist', 'App\Http\Controllers\jobsController@store');
 Route::get('/joblist/create', 'App\Http\Controllers\jobsController@create');
 Route::post('/joblist/confirm', 'App\Http\Controllers\jobsController@confirm')->name('joblist_confirm');
 Route::get('/joblist/{joblist}', 'App\Http\Controllers\jobsController@show');
 Route::post('/joblist/proposal', 'App\Http\Controllers\jobsController@proposal')->name('joblist_proposal');
+Route::post('/joblist/submit', 'App\Http\Controllers\jobsController@submit')->name('joblist_submit');
 Route::get('/pembayaran', 'App\Http\Controllers\jobController@payment');
 Route::get('/test', 'App\Http\Controllers\detailJobController@test');
 
+Route::get('/jobtransaction/{id}', 'App\Http\Controllers\JobTransaction@index')->name('jobtransaction');
+Route::post('/jobtransaction/{id}/file', 'App\Http\Controllers\JobTransaction@file')->name('jobtransaction_post_file');
 
-// Progress Route
-Route::get('/joblist/{id}', 'App\Http\Controllers\jobsController@edit')->name('joblist_edit');
-Route::post('/joblist/update','App\Http\Controllers\jobsController@update')->name('joblist_update');
+Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+Route::get('/profile/translator/{id}', 'App\Http\Controllers\ProfileController@show')->name('profile_translator');
 
-Route::get('/joblist/{detailworks}', 'App\Http\Controllers\jobsController@show')->name('get_detailwork');
-Route::post('/joblist/detailwork','App\Http\Controllers\detailworkController@detailwork')->name('joblist_detailwork');
 
 Route::get('/user', 'App\Http\Controllers\userController@index');
 

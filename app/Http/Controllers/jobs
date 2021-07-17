@@ -1,0 +1,24 @@
+public function show(Job $joblist, Proposal $proposals)
+    {
+        $user=Auth::user();
+        $jobs_id = $joblist->id;
+        $proposals = Proposal::where('jobs_id', $joblist->id)->get();
+        $is_taken = Proposal::where('jobs_id', $joblist->id)->where('users_id', $user->id)->first();
+        if($is_taken != null){
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+            if($is_taken['users_id'] == Auth::user()->id){
+                $proposals['is_taken']='true';
+            }
+            if($joblist['translator_id'] != null){
+                $proposals['is_onprogress']='true';
+            }         
+
+        }
+        else{
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+        }
+        return view('joblist.show',compact('joblist','proposals') );
+        // return $joblist;
+    }

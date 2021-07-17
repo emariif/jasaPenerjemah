@@ -11,7 +11,7 @@ class Detailwork extends Model
 
     protected $table ='detailwork';
     protected $fillable =['jobs_id','users_id','status'];
-
+    
     public function users(){
         return $this->belongsTo('App\Models\User');
     }

@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md form-group">
                         <h3 class="mb-2 mt-4">Upload Job</h3>
-                        <p>Please upload documents only in 'pdf', 'docx', 'doc', 'png' & 'text' format.</p>
+                        <p>Please upload documents only in 'pdf' format.</p>
                     </div>
                     <!--form-group-->
                 </div>
@@ -30,7 +30,7 @@
                 </form> --}}
 
                 <div id="uploader">
-                    <form action="{{url('joblist')}}" method="POST">
+                    <form action="{{url('joblist')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row uploadDoc">
                             <div class="col-sm-3">
@@ -39,13 +39,13 @@
                                 <div class="fileUpload btn btn-orange">
                                     <img src="https://image.flaticon.com/icons/svg/136/136549.svg" class="icon" />
                                     <span class="upl" id="upload">Upload document</span>
-                                    <input type="file" class="upload up" id="up" onchange="readURL(this);" />
+                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" accept="application/pdf, application/msword" />
                                 </div>
                                 <!-- btn-orange -->
                             </div>
                             <!-- col-3 -->
                             <div class="col-sm-8">
-                                <input type="text" class="form-control-note" name="nama_job" placeholder="Note" />
+                                <input type="text" class="form-control-note" name="nama_job" placeholder="Title" />
 
                             </div>
                             <!--col-8-->
@@ -91,7 +91,7 @@
                                 <h6 class="mb-3">Delivery</h6>
                                 <select name="durasi" class="form-select  @error ('deskripsi') is-invalid @enderror"
                                     aria-label="Default select example">
-                                    <option selected>Select...</option>
+                                    <option disabled value="" selected>Select...</option>
                                     <option value="1">1 Days</option>
                                     <option value="2">3 Days</option>
                                     <option value="3">7 Days</option>
@@ -125,7 +125,7 @@
                 </div>
                 <!--uploader-->
                 <div class="text-start">
-                    <a class="btn btn-new me-2"><i class="fa fa-plus"></i> Add new</a>
+                    {{-- <a class="btn btn-new me-2"><i class="fa fa-plus"></i> Add new</a> --}}
                     {{-- <a class="btn btn-next" type="submit" href="{{url('joblist/create')}}"><i
                         class="fa fa-paper-plane"></i>
                     Submit</a> --}}
@@ -139,38 +139,7 @@
     </div>
 
 
-    <!-- footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <img class="mb-2" src="images/Translator..svg" alt="Logo" width="140" />
-                    <p>Base in Malang, Indonesia</p>
-                </div>
-                <div class="col-md-2 mb-2">
-                    <p class="fw-bold">About</p>
-                    <p>About Us</p>
-                    <p>Contact Me</p>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <p class="fw-bold">Translator</p>
-                    <p>Freelance</p>
-                    <p>FAQ</p>
-                    <p>Job Listing</p>
-                </div>
-                <div class="col-md-2">
-                    <p class="foot fs-6 fw-bold mb-1">Social Media</p>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <a href="#" target="_blank"><i class="bi bi-facebook fs-3 me-2 text-dark"></i></a>
-                            <a href="#" target="_blank"><i class="bi bi-instagram fs-3 me-2 text-dark"></i></i></a>
-                            <a href="" target="_blank"><i class="bi bi-youtube fs-3 text-dark"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('includes.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">

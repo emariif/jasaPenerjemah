@@ -191,5 +191,5 @@
 </section>
 <!-- akhir benefit -->
 
-
+@include('includes.footer')
 @endsection

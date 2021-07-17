@@ -2,86 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profile;
+use App\Models\Job;
+use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class profileController extends Controller
+class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        // $users = profile::all();
-       
+        $user = Auth::user();
+        if (Auth::user()->level != 'Translator') {
+            $jobs = Job::where('users_id', $user->id)->get();
+            $data[] = [];
+            $data['user'] = User::where('id', $user->id)->get();
+            $data['pending'] = Job::where('users_id', $user->id)->where('file_translated', null)->where('translator_id', null)->orderBy('id', 'desc')->paginate(10);
+            $data['active'] = Job::where('users_id', $user->id)->where('file_translated', null)->orderBy('id', 'desc')->paginate(10);
+            $data['finish'] = Job::where('users_id', $user->id)->where('file_translated', '!=', null)->orderBy('id', 'desc')->paginate(10);
+            $data['bids'] = Proposal::where('users_id', $user->id)->get();
+            return view('profile.profile')->with('job', $jobs)->with('data', $data);
+        }
+        $jobs = Job::where('translator_id', $user->id)->get();
+        $data[] = [];
+        $data['user'] = User::where('id', $user->id)->get();
+        $data['active'] = Job::where('translator_id', $user->id)->where('file_translated', null)->orderBy('id', 'desc')->paginate(10);
+        $data['finish'] = Job::where('translator_id', $user->id)->where('file_translated', '!=', null)->orderBy('id', 'desc')->paginate(10);
+        $data['bids'] = Proposal::where('users_id', $user->id)->get();
+        return view('profile.profile')->with('job', $jobs)->with('data', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(profile $profile)
-    {
-        //
+        $user = Auth::user();
+        $jobs = Job::where('translator_id', $id)->get();
+        $data[] = [];
+        $data['user'] = User::where('id', $user->id)->get();
+        $data['active'] = Job::where('translator_id', $id)->where('file_translated', null)->orderBy('id', 'desc')->paginate(10);
+        $data['finish'] = Job::where('translator_id', $id)->where('file_translated', '!=', null)->orderBy('id', 'desc')->paginate(10);
+        $data['bids'] = Proposal::where('users_id', $id)->get();
+        return view('profile.show')->with('job', $jobs)->with('data', $data);
     }
 }

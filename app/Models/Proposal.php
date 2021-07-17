@@ -19,8 +19,4 @@ class Proposal extends Model
         return $this->belongsTo('App\Models\Job','jobs','jobs_id');
     }
 
-    public function detailwork(){
-        return $this->hasMany('App\Models\Detailwork');
-    }
-
 }
