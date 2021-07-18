@@ -58,7 +58,11 @@
             <a class="nav-link" href="{{ url('joblist') }}">Job Listing</a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link" href="{{ url('faq') }}">FAQ</a>
+=======
+            <a class="nav-link" href="/faq">FAQ</a>
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
           </li>
           @guest
               <li class="nav-item">
@@ -89,8 +93,13 @@
                       src="https://images.unsplash.com/photo-1612462767153-e8fd5ef189f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=401&q=80"
                       width="25" height="25" class="rounded-circle ms-2" /> -->
                   </a>
+<<<<<<< HEAD
                   <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     {{-- <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href=''">Setting</button> --}}
+=======
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href=''">Setting</button>
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
                     <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href='{{ route('profile') }}'">Profile</button>
                     <form action="{{ url('logout') }}" method="POST">
                       @csrf

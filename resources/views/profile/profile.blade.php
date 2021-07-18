@@ -178,7 +178,11 @@
                         </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
                           @foreach ($data['finish'] as $row)
+=======
+                          @foreach ($data['active'] as $row)
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
@@ -209,9 +213,15 @@
               </nav>
               <!--//app-pagination-->
             </div>
+<<<<<<< HEAD
             @if(Auth::user()->level == 'Client')
             <!-- akhirorder -->
             <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+=======
+            <!--//tab-pane-->
+
+            <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
               <div class="app-card app-card-orders-table mb-5">
                 <div class="app-card-body">
                   <div class="table-responsive">
@@ -227,13 +237,21 @@
                         </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
                           @foreach ($data['pending'] as $row)
+=======
+                          @foreach ($data['finish'] as $row)
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
                           </td>
                           <td class="cell">{{$row->users->name}}</td>
+<<<<<<< HEAD
                           <td class="cell"><span class="badge bg-danger">pending</span></td>
+=======
+                          <td class="cell"><span class="badge bg-success">Finish</span></td>
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
                           <td class="cell">{{$row->jumlah_halaman}}</td>
                           <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>

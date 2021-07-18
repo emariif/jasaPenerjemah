@@ -20,11 +20,18 @@ class JobTransaction extends Controller
                     $jobs['status']='progress';
                     $jobs['color']='bg-warning';
 
+<<<<<<< HEAD
             }
         }
         return view('jobtransaction.index')->with('job',$jobs);
     }
 
+=======
+                }
+            }
+            return view('jobtransaction.index')->with('job',$jobs);
+        }
+>>>>>>> 353283ea204538041230d38c73481517f23472dc
     public function file(Request $request,$id)
     {
         $validated = $request->validate([
