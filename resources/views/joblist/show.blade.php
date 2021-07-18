@@ -131,10 +131,15 @@
                                                 Last updated 3 mins ago
                                             </p>
                                             @auth
+<<<<<<< HEAD
                                                 @if (Auth::user() && Auth::user()->level == 'Client' && Auth::user()->id == $joblist->users_id )
                                                 
                                                 @if ($proposals['is_onprogress'] == 'false')
 
+=======
+                                                @if (Auth::user() && Auth::user()->level == 'Client' )
+                                                @if ($proposals['is_onprogress'] == 'false')
+>>>>>>> 8342c2aeaa45777b333f1d0dfda526026045a177
                                                 <form action="{{route('joblist_submit')}}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$joblist->id}}">

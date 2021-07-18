@@ -2,137 +2,139 @@
 @section('title','Faq')
 @section('konten')
 
-{{-- faq js --}}
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 
-<link rel="stylesheet" type="text/css" href="{{ asset('../css/faq.css') }}">
-<section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
-    <div class="container">
-        <h2 class="mt-5">Frequently Asked Questions</h2>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
-                    <h3 class="panel-title">
-                        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
-                            href="#collapse0" aria-expanded="true" aria-controls="collapse0"> What are the benefits of
-                            Solodev CMS?
-                        </a>
-                    </h3>
-                </div>
-                <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
-                    <div class="panel-body px-3 mb-4">
-                        <p>
-                            With Solodev CMS, you and your visitors will benefit from a finely-tuned technology stack
-                            that drives
-                            the highest levels of site performance, speed and engagement - and contributes more to your
-                            bottom line.
-                            Our users fell
-                            in love with:
-                        </p>
-                        <ul>
-                            <li>Light speed deployment on the most secure and stable cloud infrastructure available on
-                                the market.
-                            </li>
-                            <li>Scalability – pay for what you need today and add-on options as you grow.</li>
-                            <li>All of the bells and whistles of other enterprise CMS options but without the design
-                                limitations -
-                                this CMS simply lets you realize your creative visions.</li>
-                            <li>Amazing support backed by a team of Solodev pros – here when you need them.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="faq.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
-            <div class="panel panel-default">
-                <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
-                    <h3 class="panel-title">
-                        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
-                            href="#collapse1" aria-expanded="true" aria-controls="collapse1"> How easy is it to build a
-                            website with
-                            Solodev CMS? </a>
-                    </h3>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
-                    <div class="panel-body px-3 mb-4">
-                        <p>Building a website is extremely easy. With a working knowledge of HTML and CSS you will be
-                            able to have
-                            a site up and running in no time.</p>
-                    </div>
-                </div>
-            </div>
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-            <div class="panel panel-default">
-                <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
-                    <h3 class="panel-title">
-                        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
-                            href="#collapse2" aria-expanded="true" aria-controls="collapse2"> What is the uptime for
-                            Solodev CMS?
-                        </a>
-                    </h3>
-                </div>
-                <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
-                    <div class="panel-body px-3 mb-4">
-                        <p>Using Amazon AWS technology which is an industry leader for reliability you will be able to
-                            experience
-                            an uptime in the vicinity of 99.95%.</p>
-                    </div>
-                </div>
-            </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="css/faq.css" />
 
-            <div class="panel panel-default">
-                <div class="panel-heading p-3 mb-3" role="tab" id="heading3">
-                    <h3 class="panel-title">
-                        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
-                            href="#collapse3" aria-expanded="true" aria-controls="collapse3"> Can Solodev CMS handle
-                            multiple
-                            websites for my company? </a>
-                    </h3>
-                </div>
-                <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
-                    <div class="panel-body px-3 mb-4">
-                        <p>Yes, Solodev CMS is built to handle the needs of any size company. With our Multi-Site
-                            Management, you
-                            will be able to easily manage all of your websites.</p>
-                    </div>
-                </div>
+<body>
+
+  <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
+    <div class="container pt-3">
+      <h2 class="mt-5">Frequently Asked Questions</h2>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
+                href="#collapse0" aria-expanded="true" aria-controls="collapse0"> Our services
+              </a>
+            </h3>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+            <div class="panel-body px-3 mb-4">
+              <p>
+                Kami menyediakan jasa penerjemah dokumen dengan berbagai macam
+                bahasa
+                untuk diterjemahkan oleh translator handal dengan berbagai macam pengalaman
+              </p>
+              <ul>
+                <li><span class="fw-bolder">Translate Bahasa</span>, Menyediakan jasa terjemahan dari bahasa indonesia
+                  kedalam berbagai
+                  bahasa
+                  ataupun sebaliknya.
+                </li>
+                <li><span class="fw-bolder">Penyedia Pekerjaan</span>, Menyediakan Pekerjaan untuk para translator
+                  sesuai
+                  dengan keahlian
+                  penerjemah
+                  masing-masing.
+                </li>
+                <li><span class="fw-bolder">Cari Penerjemah</span>, Terjemahkan dokumen Anda dan para translator akan
+                  mengerjakan dokumen
+                  sesuai
+                  permintaan.
+                </li>
+                <li><span class="fw-bolder">Convert File</span>, Convert file sesuai dengan permintaan format dari
+                  client
+                  seperti pdf, word,
+                  dll.
+                </li>
+
+              </ul>
             </div>
+          </div>
         </div>
-    </div>
-</section>
 
-<!-- footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                <img class="mb-2" src="images/Translator..svg" alt="Logo" width="140" />
-                <p>Base in Malang, Indonesia</p>
+        <div class="panel panel-default">
+          <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
+                href="#collapse1" aria-expanded="true" aria-controls="collapse1"> How It Work? </a>
+            </h3>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+            <div class="panel-body px-3 mb-4">
+              <p>
+                Setiap dokumen yang akan diterjemahkan akan langsung diserahkan kepada freelancer. Client yang akan
+                tinggal menunggu
+                hasil jadi, kepuasan pelanggan adalah hal utama
+              </p>
+              <ul>
+                <li><span class="fw-bolder">Sign In</span>, Setiap client atau freelancer harus memiliki akun untuk
+                  dapat
+                  mengakses website.
+                </li>
+                <li><span class="fw-bolder">Upload File</span>, Client harus mengupload file yang akan diterjemahkan,
+                  detail dokumen dan pembayaran akan muncul.
+                </li>
+                <li><span class="fw-bolder">Lakukan Pembayaran</span>, Lakukan pembayaran untuk segera dokumen Anda di
+                  proses oleh translator Kami.
+                </li>
+                <li><span class="fw-bolder">Proses Dokumen</span>, Translator Kami akan segera proses dokumen yang Anda
+                  kirimkan, dan akan selesai sesuai permintaan.
+                </li>
+
+              </ul>
             </div>
-            <div class="col-md-2 mb-2">
-                <p class="fw-bold">About</p>
-                <p>About Us</p>
-                <p>Contact Me</p>
-            </div>
-            <div class="col-md-3 mb-2">
-                <p class="fw-bold">Translator</p>
-                <p>Freelance</p>
-                <p>FAQ</p>
-                <p>Job Listing</p>
-            </div>
-            <div class="col-md-2">
-                <p class="foot fs-6 fw-bold mb-1">Social Media</p>
-                <div class="row">
-                    <div class="col mb-3">
-                        <a href="#" target="_blank"><i class="bi bi-facebook fs-3 me-2 text-dark"></i></a>
-                        <a href="#" target="_blank"><i class="bi bi-instagram fs-3 me-2 text-dark"></i></i></a>
-                        <a href="" target="_blank"><i class="bi bi-youtube fs-3 text-dark"></i></a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
+                href="#collapse2" aria-expanded="true" aria-controls="collapse2"> Mengapa Kami?
+              </a>
+            </h3>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+            <div class="panel-body px-3 mb-4">
+              <ul>
+                <li><span class="fw-bolder">On Time</span>, Deadline tepat waktu sesuai dengan kesepakatan dan
+                  permintaan dari client.
+                </li>
+                <li><span class="fw-bolder">Fast Response</span>, Setiap dokumen yang akan diterjemahkan akan langsung
+                  dikerjakan freelancer.
+                </li>
+                <li><span class="fw-bolder">Enjoy with quality</span>, Diterjemahkan oleh translator yang handal,
+                  Kualitas terjemahan dokumen Anda adalah kepuasan Kami
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</footer>
+  </section>
+
+  <!-- footer -->
+  @include('includes.footer')
+</body>
 @endsection

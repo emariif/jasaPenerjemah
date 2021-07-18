@@ -67,9 +67,10 @@ small {
 .form-controls {
   padding: 5px;
   border-radius: 5px;
-  border: rgb(175, 175, 175);
+  border: 1px solid rgb(61, 61, 61);
 }
 
-.form-controls:checked {
-  border: none;
+.form-controls:focus {
+  border: 1px solid rgb(61, 61, 61);
+  outline: none;
 }
