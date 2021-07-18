@@ -21,7 +21,15 @@ class jobsController extends Controller
     public function index()
     {
         // $jobs = Job::all();
-        $jobs = Job::get();
+        $jobs = Job::orderBy('id', 'desc')->paginate(9);
+        $users = User::all();
+        return view('joblist.index',compact('jobs','users'));
+        
+    }
+    public function cari(Request $request)
+    {
+        // $jobs = Job::all();
+        $jobs = Job::where('nama_job', 'like', '%'.$request->cari.'%')->orderBy('id', 'desc')->paginate(9);
         $users = User::all();
         return view('joblist.index',compact('jobs','users'));
         
@@ -64,7 +72,9 @@ class jobsController extends Controller
 
     public function store(Request $request)
     {
+
         $validated = $request->validate([
+			'file' => 'required|file|mimes:pdf,doc,docx,zip',
             'kategori_bahasa_id' => 'required|max:255',
             'nama_job' => 'required',
             'deskripsi' => 'required',
@@ -79,7 +89,13 @@ class jobsController extends Controller
             'jumlah_halaman.required' => ' data tidak boleh kosong' ,
             'total_harga.required' => ' data tidak boleh kosong' ,
         ]);
-            // create nn
+		// menyimpan data file yang diupload ke variabel $file
+		$file = $request->file('file');
+		$nama_file = time()."_".Auth::user()->id.".".$file->getClientOriginalExtension();;
+        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'data_file';
+		$file->move($tujuan_upload,$nama_file);
+ 
         $data = [
             'users_id'=>Auth::user()->id,
             'userDetails' => User::find('users_id'),
@@ -89,6 +105,7 @@ class jobsController extends Controller
             'jumlah_halaman' => $request-> jumlah_halaman,
             'total_harga' => $request-> total_harga,
             'kategori_bahasa_id' => $request-> kategori_bahasa_id,
+			'file' => $nama_file,
             ];
             $bahasa = Kategori_Bahasa::all()->where('id',$data['kategori_bahasa_id'])->first();
             $data['kategori_bahasa'] = $bahasa->nama_kategori_bahasa;
@@ -111,11 +128,12 @@ class jobsController extends Controller
             'users_id'=>Auth::user()->id,
             'userDetails' => User::find('users_id'),
             'nama_job' =>$request->nama_job,
-            'deskripsi' => $request-> deskripsi,
-            'durasi' => $request-> durasi,
-            'jumlah_halaman' => $request-> jumlah_halaman,
-            'total_harga' => $request-> total_harga,
-            'kategori_bahasa_id' => $request-> kategori_bahasa_id,
+            'deskripsi' => $request->deskripsi,
+            'durasi' => $request->durasi,
+            'jumlah_halaman' => $request->jumlah_halaman,
+            'total_harga' => $request->total_harga,
+            'kategori_bahasa_id' => $request->kategori_bahasa_id,
+			'file' => $request->file,
             ]);
             return redirect('joblist');
     }
@@ -146,6 +164,7 @@ class jobsController extends Controller
             'deskripsi' => $request-> deskripsi,
         ]);
         
+        //coba
         // dd($proposals);
         return redirect()->back();
         // $proposals = Proposal::get();
@@ -160,8 +179,28 @@ class jobsController extends Controller
      */
     public function show(Job $joblist, Proposal $proposals)
     {
-        $jobs_id = Job::find($joblist);
+        $user=Auth::user();
+        $jobs_id = $joblist->id;
         $proposals = Proposal::where('jobs_id', $joblist->id)->get();
+        $is_proposals = Proposal::where('jobs_id', $joblist->id)->first();
+        $is_taken = Proposal::where('jobs_id', $joblist->id)->where('users_id', $user->id)->first();
+        if($is_proposals != null){
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+            if($is_taken != null){
+                if($is_taken['users_id'] == Auth::user()->id){
+                $proposals['is_taken']='true';
+                }
+            }
+            if($joblist['translator_id'] != null){
+                $proposals['is_onprogress']='true';
+            }
+
+        }
+        else{
+            $proposals['is_taken']='false';
+            $proposals['is_onprogress']='false';
+        }
         return view('joblist.show',compact('joblist','proposals') );
         // return $joblist;
     }
@@ -175,6 +214,14 @@ class jobsController extends Controller
     public function edit($id)
     {
         //
+    }
+    public function submit(Request $request)
+    {
+         
+        $jobs_id = Job::find($request->id);
+        $jobs_id->translator_id = $request->translator_id;
+        $jobs_id->save();
+        return redirect('/jobtransaction/'.$request->id);
     }
 
     /**

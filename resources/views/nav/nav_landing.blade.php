@@ -43,7 +43,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container mt-2">
       <a class="navbar-brand" href="{{ url('/')}}">
-        <img src="images/Translator..svg" alt="" width="113" height="29" />
+        <img src="/images/Translator..svg" alt="" width="113" height="29" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,13 +52,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="{{ url('/')}}">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('joblist') }}">Job Listing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/faq">FAQ</a>
@@ -94,7 +91,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href=''">Setting</button>
-                    <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href=''">Edit Profile</button>
+                    <button class="dropdown-item" type="button" onclick="event.preventDefault(); location.href='{{ route('profile') }}'">Profile</button>
                     <form action="{{ url('logout') }}" method="POST">
                       @csrf
                       <button class="dropdown-item" type="submit">Keluar</button>

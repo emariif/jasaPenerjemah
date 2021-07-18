@@ -63,3 +63,13 @@ small {
   display: inline-block;
   vertical-align: top;
 }
+
+.form-controls {
+  padding: 5px;
+  border-radius: 5px;
+  border: rgb(175, 175, 175);
+}
+
+.form-controls:checked {
+  border: none;
+}

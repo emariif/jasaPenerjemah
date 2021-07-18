@@ -9,7 +9,7 @@
         <div class="job">
             <div class="header ">
                 <div class="container">
-                    <h1 class="pt-5">Translate Document CV</h1>
+                    <h1 class="pt-5">{{ $joblist->nama_job }}</h1>
                     <ul class="nav nav-tabs mt-5">
                         <li class="nav-item">
                             <a class="nav-link active px-3" aria-current="page" data-bs-toggle="tab"
@@ -40,12 +40,12 @@
                                             <div class="row py-3">
 
                                                 <div class="col-md-2 ">
-                                                    <img class="image--avatar mb-0" src="images/download.jpg" alt="">
+                                                    <img class="image--avatar mb-0" src="/images/download.jpg" alt="">
 
                                                     <div class="item">
                                                         <h6 style="color: #9fa5b1">User</h6>
                                                         <h6 class="type mt-2" style="color: #1b1b1d">
-                                                            {{$joblist->nama}}
+                                                            {{$joblist->users->username}}
                                                         </h6>
                                                     </div>
                                                 </div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </li>
                                         @auth
-                                            @if (Auth::user() && Auth::user()->level == 'Translator')
+                                            @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false' && $proposals['is_onprogress'] == 'false')
                                             <li class="list-group-item pt-3 pb-4">
                                             <button class="btn btn-dark px-5 py-2 me-3" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#take-job"
@@ -76,6 +76,19 @@
                                                 Take a Job
                                             </button>
                                             <h5 style="display: inline-block;">@currency($joblist->total_harga)</h5>
+                                        </li>
+                                            @elseif (Auth::user() && Auth::user()->level == 'Client' && $proposals['is_onprogress'] == 'true' && Auth::user()->id == $joblist->users_id)
+                                            <li class="list-group-item pt-3 pb-4">
+                                            <a href="{{route('jobtransaction',$joblist->id)}}" class="btn btn-dark px-5 py-2 me-3"
+                                                style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
+                                                Lihat Pekerjaan
+                                            </a>
+                                            @elseif ($joblist->translator_id == Auth::user()->id)
+                                            <li class="list-group-item pt-3 pb-4">
+                                            <a href="{{route('jobtransaction',$joblist->id)}}" class="btn btn-dark px-5 py-2 me-3"
+                                                style="color: white; display: inline-block; font-size: 14px; font-weight: 600;">
+                                                Lihat Pekerjaan
+                                            </a>
                                         </li>
                                             @endif
                                         @endauth
@@ -95,10 +108,10 @@
                                         
                                             <li class="list-group-item">
                                             <div class="col-md-5 mb-2">
-                                                <img class="image--avatar mb-0 me-1" src="images/download.jpg"
+                                                <img class="image--avatar mb-0 me-1" src="/images/download.jpg"
                                                     alt="">
                                                 <div class="item">
-                                                    <h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5>
+                                                    <a href="{{route('profile_translator',$proposal->users_id)}}"><h5 class="type" style="color: #1b1b1d">{{ $proposal->users->name }} ({{$proposal->jobs_id}})</h5></a>
                                                     <h6 class="type mt-2" style="color: #1b1b1d">
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
                                                         <span><i class="bi bi-star-fill text-warning"></i></span>
@@ -118,11 +131,20 @@
                                                 Last updated 3 mins ago
                                             </p>
                                             @auth
-                                                @if (Auth::user() && Auth::user()->level == 'Client')
-                                                <button class="btn btn-outline-success px-5 py-2" type="button"
+                                                @if (Auth::user() && Auth::user()->level == 'Client' && Auth::user()->id == $joblist->users_id )
+                                                
+                                                @if ($proposals['is_onprogress'] == 'false')
+
+                                                <form action="{{route('joblist_submit')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$joblist->id}}">
+                                                    <input type="hidden" name="translator_id" value="{{$proposal->users->id}}">
+                                                <button class="btn btn-outline-success px-5 py-2" type="submit"
                                                     style="font-size: 14px; background-color: inherit; color: green; float: right;">
                                                     Select Translator
                                                 </button>
+                                                </form>
+                                                @endif
                                                 @endif
                                             @endauth
                                         </li>
@@ -142,7 +164,7 @@
                 </div>
 
                 @auth
-                    @if (Auth::user() && Auth::user()->level == 'Translator')
+                    @if (Auth::user() && Auth::user()->level == 'Translator' && $proposals['is_taken'] == 'false' && $proposals['is_onprogress'] == 'false')
                         <div class="modal" id="take-job">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -193,36 +215,5 @@
 
 
 
-<!-- footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                <img class="mb-2" src="images/Translator..svg" alt="Logo" width="140" />
-                <p>Base in Malang, Indonesia</p>
-            </div>
-            <div class="col-md-2 mb-2">
-                <p class="fw-bold">About</p>
-                <p>About Us</p>
-                <p>Contact Me</p>
-            </div>
-            <div class="col-md-3 mb-2">
-                <p class="fw-bold">Translator</p>
-                <p>Freelance</p>
-                <p>FAQ</p>
-                <p>Job Listing</p>
-            </div>
-            <div class="col-md-2">
-                <p class="foot fs-6 fw-bold mb-1">Social Media</p>
-                <div class="row">
-                    <div class="col mb-3">
-                        <a href="#" target="_blank"><i class="bi bi-facebook fs-3 me-2 text-dark"></i></a>
-                        <a href="#" target="_blank"><i class="bi bi-instagram fs-3 me-2 text-dark"></i></i></a>
-                        <a href="" target="_blank"><i class="bi bi-youtube fs-3 text-dark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+@include('includes.footer')
 @endsection
