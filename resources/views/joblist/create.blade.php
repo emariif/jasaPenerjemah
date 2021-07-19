@@ -39,14 +39,23 @@
                                 <div class="fileUpload btn btn-orange">
                                     <img src="https://image.flaticon.com/icons/svg/136/136549.svg" class="icon" />
                                     <span class="upl" id="upload">Upload document</span>
-                                    <input type="file" name="file" class="upload up" id="up" onchange="readURL(this);" accept="application/pdf, application/msword" />
+                                    <input type="file" name="file" class="upload up @error ('deskripsi') is-invalid @enderror" id="up" onchange="readURL(this);" accept="application/pdf, application/msword" />
+                                    @error('deskripsi')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <!-- btn-orange -->
                             </div>
                             <!-- col-3 -->
                             <div class="col-sm-8">
-                                <input type="text" class="form-control-note" name="nama_job" placeholder="Title" />
-
+                                <input type="text" class="form-control-note @error ('deskripsi') is-invalid @enderror" name="nama_job" placeholder="Title" />
+                                @error('deskripsi')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <!--col-8-->
                             <div class="col-sm-1">
