@@ -2,8 +2,8 @@
 @section('title','Checkout Payment')
 @section('konten')
 
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/checkout-payment.css" />
+<link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/checkout-payment.css" />
 
 <body>
     <div class="container pt-5">
@@ -12,7 +12,7 @@
             <div class="col-md">
                 <div class="card payment w-100" style="width: 18rem;">
                     <div class="card-header ps-4 pb-3 pt-3">
-                        Payment Options
+                        Pilihan Pembayaran
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -71,7 +71,7 @@
                         <p class="sub">Detail Job</p>
                         <div class="row detail type justify-content-between">
                             <div class="col-md-5">
-                                <p class="text-start">Tujuan</p>
+                                <p class="text-start">Terjemah ke</p>
                             </div>
                             <div class="col-md-7">
                                 <p class="text-end">{{$data['kategori_bahasa']}}</p>
@@ -82,12 +82,13 @@
                                 <p class="text-start">File</p>
                             </div>
                             <div class="col-md-7">
-                                <p class="text-end"><a href="{{asset('data_file')}}/{{$data['file']}}">{{$data['file']}}</a></p>
+                                <p class="text-end"><a
+                                        href="{{asset('data_file')}}/{{$data['file']}}">{{$data['file']}}</a></p>
                             </div>
                         </div>
                         <div class="row detail page justify-content-between">
                             <div class="col-md-8">
-                                <p class="text-start">Number of Page</p>
+                                <p class="text-start">Jumlah Halaman</p>
                             </div>
                             <div class="col-md-4">
                                 <p class="text-end">{{$data['jumlah_halaman']}} Pages</p>
@@ -95,10 +96,10 @@
                         </div>
                         <div class="row detail delivery justify-content-between">
                             <div class="col-md-7">
-                                <p class="text-start">Total Delivery Time</p>
+                                <p class="text-start">Lama Pengerjaan</p>
                             </div>
                             <div class="col-md-3">
-                                <p class="text-end">{{$data['durasi']}} Days</p>
+                                <p class="text-end">{{$data['durasi']}} Hari</p>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
                         <li class="list-group-item">
                             <div class="row detail type justify-content-between">
                                 <div class="col-md-5">
-                                    <p class="text-start">Service Fee</p>
+                                    <p class="text-start">Harga</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="text-end">Rp {{$data['total_harga']}}</p>
@@ -122,19 +123,21 @@
                                     <p class="text-end total">@currency($data['total_harga'])</p>
                                 </div>
                                 <div class="form-group">
-                                <form action="{{route('joblist_confirm')}}" method="post">
-                        @csrf
-                                    <input type="hidden" name="users_id" value="{{$data['userDetails']}}">
-                                    <input type="hidden" name="nama_job" value="{{$data['nama_job']}}">
-                                    <input type="hidden" name="deskripsi" value="{{$data['deskripsi']}}">
-                                    <input type="hidden" name="durasi" value="{{$data['durasi']}}">
-                                    <input type="hidden" name="jumlah_halaman" value="{{$data['jumlah_halaman']}}">
-                                    <input type="hidden" name="total_harga" value="{{$data['total_harga']}}">
-                                    <input type="hidden" name="file" value="{{$data['file']}}">
-                                    <input type="hidden" name="kategori_bahasa_id" value="{{$data['kategori_bahasa_id']}}">
-                                    <input type="submit" name="register"
-                                        class="form-control btn btn-dark px-3 shadow-sm register" value="Confirm & Pay">
-                                </form>
+                                    <form action="{{route('joblist_confirm')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="users_id" value="{{$data['userDetails']}}">
+                                        <input type="hidden" name="nama_job" value="{{$data['nama_job']}}">
+                                        <input type="hidden" name="deskripsi" value="{{$data['deskripsi']}}">
+                                        <input type="hidden" name="durasi" value="{{$data['durasi']}}">
+                                        <input type="hidden" name="jumlah_halaman" value="{{$data['jumlah_halaman']}}">
+                                        <input type="hidden" name="total_harga" value="{{$data['total_harga']}}">
+                                        <input type="hidden" name="file" value="{{$data['file']}}">
+                                        <input type="hidden" name="kategori_bahasa_id"
+                                            value="{{$data['kategori_bahasa_id']}}">
+                                        <input type="submit" name="register"
+                                            class="form-control btn btn-dark px-3 shadow-sm register"
+                                            value="Konfirmasi & Bayar">
+                                    </form>
                                 </div>
                             </div>
                         </li>

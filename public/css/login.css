@@ -1,0 +1,54 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+label, a, p, .form-control {
+  font-size: 14px;
+}
+
+.txt2{
+  font-size: 14px;
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Quicksand", sans-serif;
+}
+
+p {
+  line-height: 170%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  position: relative; 
+}
+
+.social a {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input:focus {
+  box-shadow: none;
+}
+
+.btn {
+  padding: 9px 0;
+}
+
+.btn:hover {
+  transition: all 0.5s;
+}
+
+.form-control {
+  padding: 12px 16px;
+}
+
+.form-group button {
+  font-weight: 600;
+}
