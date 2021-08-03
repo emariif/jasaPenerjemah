@@ -4,17 +4,17 @@
 @section('konten')
 
 
-  <link rel="stylesheet" href="css/translator.css" />
-  <link rel="stylesheet" href="css/portal.css" />
+<link rel="stylesheet" href="css/translator.css" />
+<link rel="stylesheet" href="css/portal.css" />
 
 <body id="jobDetails">
-  
+
   <div class="container mt-5">
     <div class="main-body">
       <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
           @foreach ($data['user'] as $item)
-              <div class="card">
+          <div class="card">
             <div class="card-body">
               <div class="d-flex">
                 {{-- <img src="images/users/user-1.jpg" alt="Admin" class="pf1 profile1 text-center" width="150" /> --}}
@@ -45,10 +45,10 @@
                 <li style="background: none;">
 
                   <div class="profileit">
-                    <i class="bi bi-geo-alt-fill"><span class="ms-2">Nama</span></i>
+                    <i class="bi bi-person-circle"><span class="ms-2">Nama</span></i>
                   </div>
                   <div class="profileit">
-                    <i class="bi bi-person-fill"><span class="ms-2">Bergabung Sejak</span></i>
+                    <i class="bi bi-check2"><span class="ms-2">Bergabung Sejak</span></i>
                   </div>
                   <div class="profileit">
                     <i class="bi bi-cash"><span class="ms-2">Saldo</span></i>
@@ -77,7 +77,7 @@
             <!-- akhir profiledetail -->
           </div>
           @endforeach
-          
+
           <!-- Tabel Skill -->
           <div class="mt-5">
             {{-- <ul class="list-group list-group-flush">
@@ -101,9 +101,9 @@
           <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4 ">
             @if(Auth::user()->level == 'Client')
 
-            <a class="flex-sm-fill text-sm-center nav-link active" id="pending-tab" data-bs-toggle="tab"
-              href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
-              @endif
+            <a class="flex-sm-fill text-sm-center nav-link active" id="pending-tab" data-bs-toggle="tab" href="#pending"
+              role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+            @endif
             <a class="flex-sm-fill text-sm-center nav-link" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all"
               role="tab" aria-controls="orders-all" aria-selected="false">Active</a>
             <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab"
@@ -129,7 +129,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($data['pending'] as $row)
+                        @foreach ($data['pending'] as $row)
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
@@ -137,9 +137,10 @@
                           <td class="cell">{{$row->users->name}}</td>
                           <td class="cell"><span class="badge bg-danger">pending</span></td>
                           <td class="cell">{{$row->jumlah_halaman}}</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
+                          <td class="cell"><a class="btn-sm app-btn-secondary"
+                              href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>
-                          @endforeach
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -150,10 +151,13 @@
               <!--//app-card-->
               <nav class="app-pagination">
                 <ul class="pagination justify-content-center">
-                  <li class="page-item <?php $data['pending']->setPageName('pending'); if($data['pending']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
-                    <a class="page-link" href="{{$data['pending']->previousPageUrl()}}" tabindex="-1" <?php if($data['pending']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
+                  <li
+                    class="page-item <?php $data['pending']->setPageName('pending'); if($data['pending']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
+                    <a class="page-link" href="{{$data['pending']->previousPageUrl()}}" tabindex="-1"
+                      <?php if($data['pending']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
                   </li>
-                  <li class="page-item <?php if($data['pending']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>">
+                  <li
+                    class="page-item <?php if($data['pending']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>">
                     <a class="page-link" href="{{$data['pending']->nextPageUrl()}}">Next</a>
                   </li>
                 </ul>
@@ -161,7 +165,7 @@
               <!--//app-pagination-->
             </div>
             @endif
-            
+
             <div class="tab-pane fade " id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
               <div class="app-card app-card-orders-table shadow-sm mb-5">
                 <div class="app-card-body">
@@ -178,7 +182,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($data['active'] as $row)
+                        @foreach ($data['active'] as $row)
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
@@ -186,9 +190,10 @@
                           <td class="cell">{{$row->users->name}}</td>
                           <td class="cell"><span class="badge bg-warning">Progress</span></td>
                           <td class="cell">{{$row->jumlah_halaman}}</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
+                          <td class="cell"><a class="btn-sm app-btn-secondary"
+                              href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>
-                          @endforeach
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -199,11 +204,14 @@
               <!--//app-card-->
               <nav class="app-pagination">
                 <ul class="pagination justify-content-center">
-                  <li class="page-item <?php $data['active']->setPageName('active'); if($data['active']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
-                    <a class="page-link" href="{{$data['active']->previousPageUrl()}}" tabindex="-1" <?php if($data['active']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
+                  <li
+                    class="page-item <?php $data['active']->setPageName('active'); if($data['active']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
+                    <a class="page-link" href="{{$data['active']->previousPageUrl()}}" tabindex="-1"
+                      <?php if($data['active']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
                   </li>
-                  <li class="page-item <?php if($data['active']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>"">
-                    <a class="page-link" href="{{$data['active']->nextPageUrl()}}">Next</a>
+                  <li
+                    class="page-item <?php if($data['active']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>"">
+                    <a class=" page-link" href="{{$data['active']->nextPageUrl()}}">Next</a>
                   </li>
                 </ul>
               </nav>
@@ -227,7 +235,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($data['finish'] as $row)
+                        @foreach ($data['finish'] as $row)
                         <tr>
                           <td class="cell">#{{$row->id}}</td>
                           <td class="cell"><span class="truncate">{{$row->nama_job}}</span>
@@ -235,9 +243,10 @@
                           <td class="cell">{{$row->users->name}}</td>
                           <td class="cell"><span class="badge bg-success">Finish</span></td>
                           <td class="cell">{{$row->jumlah_halaman}}</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="{{route('jobtransaction',$row->id)}}">View</a></td>
+                          <td class="cell"><a class="btn-sm app-btn-secondary"
+                              href="{{route('jobtransaction',$row->id)}}">View</a></td>
                         </tr>
-                          @endforeach
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -248,17 +257,20 @@
               <!--//app-card-->
               <nav class="app-pagination">
                 <ul class="pagination justify-content-center">
-                  <li class="page-item <?php $data['finish']->setPageName('finish'); if($data['finish']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
-                    <a class="page-link" href="{{$data['finish']->previousPageUrl()}}" tabindex="-1" <?php if($data['finish']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
+                  <li
+                    class="page-item <?php $data['finish']->setPageName('finish'); if($data['finish']->onFirstPage()){echo 'disabled';}else{echo '';}?>">
+                    <a class="page-link" href="{{$data['finish']->previousPageUrl()}}" tabindex="-1"
+                      <?php if($data['finish']->onFirstPage()){echo 'aria-disabled="true"';}else{echo 'aria-disabled="false"';}?>>Previous</a>
                   </li>
-                  <li class="page-item <?php if($data['finish']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>">
+                  <li
+                    class="page-item <?php if($data['finish']->nextPageUrl() == null){echo 'disabled';}else{echo '';}?>">
                     <a class="page-link" href="{{$data['finish']->nextPageUrl()}}">Next</a>
                   </li>
                 </ul>
               </nav>
               <!--//app-pagination-->
             </div>
-            
+
             <!-- akhirorder -->
           </div>
         </div>
@@ -266,8 +278,8 @@
     </div>
     @include('includes.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"></script>
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

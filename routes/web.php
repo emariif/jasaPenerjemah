@@ -30,7 +30,7 @@ Route::get('/joblist/{joblist}', 'App\Http\Controllers\jobsController@show');
 Route::post('/joblist/proposal', 'App\Http\Controllers\jobsController@proposal')->name('joblist_proposal');
 Route::post('/joblist/submit', 'App\Http\Controllers\jobsController@submit')->name('joblist_submit');
 Route::get('/pembayaran', 'App\Http\Controllers\jobController@payment');
-Route::get('/test', 'App\Http\Controllers\detailJobController@test');
+// Route::get('/test', 'App\Http\Controllers\detailJobController@test');
 
 Route::get('/jobtransaction/{id}', 'App\Http\Controllers\JobTransaction@index')->name('jobtransaction');
 Route::post('/jobtransaction/{id}/file', 'App\Http\Controllers\JobTransaction@file')->name('jobtransaction_post_file');
